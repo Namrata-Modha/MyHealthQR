@@ -1,5 +1,5 @@
-# Use the official PHP image with CLI and required extensions
-FROM php:8.1-cli
+# Use PHP 8.2 instead of 8.1
+FROM php:8.2-cli
 
 # Install required system dependencies
 RUN apt-get update && apt-get install -y \
@@ -9,19 +9,19 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /var/www
 
-# Copy Laravel files
+# Copy Laravel app files
 COPY . .
 
 # Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Ensure permissions
+# Ensure storage & cache permissions
 RUN chmod -R 777 storage bootstrap/cache
 
 # Run Composer install
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
 
-# Expose port
+# Expose Laravel port
 EXPOSE 8000
 
 # Start Laravel application
