@@ -6,8 +6,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     nginx \
-    && docker-php-ext-install pdo pdo_pgsql
-
+    libpq-dev \ 
 # Set working directory
 WORKDIR /var/www
 
