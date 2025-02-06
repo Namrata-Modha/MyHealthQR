@@ -27,5 +27,5 @@ RUN chmod -R 777 storage bootstrap/cache
 # Expose port 8000 for Laravel
 EXPOSE 8000
 
-# Start PHP-FPM & Nginx
-CMD ["php-fpm", "-D", "&&", "nginx", "-g", "daemon off;"]
+# **Change CMD to Start Laravel with PHP-FPM and Nginx**
+CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
