@@ -1,36 +1,27 @@
-# Use the official PHP 8.1 CLI image
+# Use the official PHP image with CLI and required extensions
 FROM php:8.1-cli
 
 # Install required system dependencies
 RUN apt-get update && apt-get install -y \
-    zip \
-    unzip \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
+    zip unzip git curl libpq-dev libpng-dev libzip-dev \
+    && docker-php-ext-install pdo pdo_pgsql zip
 
 # Set working directory
 WORKDIR /var/www
 
-# Copy Laravel application files
+# Copy Laravel files
 COPY . .
 
-# Install Composer
+# Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Ensure Composer is installed
-RUN composer --version
+# Ensure permissions
+RUN chmod -R 777 storage bootstrap/cache
 
-# Clear Composer cache before installing dependencies
-RUN composer clear-cache
-
-# Install Laravel dependencies
+# Run Composer install
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
 
-# Expose Laravel's default port
+# Expose port
 EXPOSE 8000
 
 # Start Laravel application
