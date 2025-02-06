@@ -1,28 +1,33 @@
-# Use PHP 8.2 instead of 8.1
-FROM php:8.2-cli
+# Use official PHP image with FPM
+FROM php:8.2-fpm
 
-# Install required system dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    zip unzip git curl libpq-dev libpng-dev libzip-dev \
-    && docker-php-ext-install pdo pdo_pgsql zip
+    unzip \
+    git \
+    nginx \
+    && docker-php-ext-install pdo pdo_pgsql
 
 # Set working directory
 WORKDIR /var/www
 
-# Copy Laravel app files
+# Copy Laravel app
 COPY . .
 
-# Install Composer globally
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Ensure storage & cache permissions
-RUN chmod -R 777 storage bootstrap/cache
-
-# Run Composer install
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
 
-# Expose Laravel port
+# Permissions for Laravel storage & cache
+RUN chmod -R 777 storage bootstrap/cache
+
+# Copy default Nginx config
+COPY .docker/nginx/default.conf /etc/nginx/sites-available/default
+
+# Expose port 8000 for Laravel
 EXPOSE 8000
 
-# Start Laravel application
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Start PHP-FPM & Nginx
+CMD ["php-fpm", "-D", "&&", "nginx", "-g", "daemon off;"]
