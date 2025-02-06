@@ -1,4 +1,4 @@
-# Use official PHP image with FPM
+# Use official PHP image
 FROM php:8.2-fpm
 
 # Install system dependencies
@@ -6,7 +6,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     nginx \
-    libpq-dev \ 
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql
+
 # Set working directory
 WORKDIR /var/www
 
@@ -16,14 +18,11 @@ COPY . .
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install dependencies
+# Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
 
-# Permissions for Laravel storage & cache
+# Set permissions
 RUN chmod -R 777 storage bootstrap/cache
-
-# Copy default Nginx config
-COPY .docker/nginx/default.conf /etc/nginx/sites-available/default
 
 # Expose port 8000 for Laravel
 EXPOSE 8000
