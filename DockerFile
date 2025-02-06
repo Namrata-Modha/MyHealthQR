@@ -1,4 +1,4 @@
-# Use official PHP image with FPM
+# Use official PHP image
 FROM php:8.2-fpm
 
 # Install system dependencies
@@ -17,21 +17,15 @@ COPY . .
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
 
 # Set permissions
 RUN chmod -R 777 storage bootstrap/cache
 
-# Copy Nginx configuration
-COPY .docker/nginx/default.conf /etc/nginx/sites-available/default
-RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+# Expose port 8000 for Laravel
+EXPOSE 8000
 
-# Remove default Nginx config and enable the custom one
-RUN rm -f /etc/nginx/sites-enabled/default
-RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
-# Expose port 80 for web traffic
-EXPOSE 80
-
-# Start Nginx and PHP-FPM
-CMD service nginx start && php-fpm
+# **Change CMD to Start Laravel with PHP-FPM and Nginx**
+CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
