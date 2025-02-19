@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h2>Verify Your Email</h2>
-    <p>Please check your email and click the verification link to activate your account.</p>
-    
+    <h2>Email Verification Required</h2>
+    <p>Please check your email and click on the verification link to activate your account.</p>
+
     @if (session('message'))
-        <p>{{ session('message') }}</p>
+        <div class="alert alert-success">{{ session('message') }}</div>
     @endif
 
-    <form action="{{ route('verification.resend') }}" method="POST">
+    <form method="POST" action="{{ route('verification.resend') }}">
         @csrf
-        <button type="submit">Resend Verification Email</button>
+        <button type="submit" class="btn btn-primary">Resend Verification Email</button>
     </form>
 </div>
 @endsection

@@ -18,12 +18,15 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-        'email_verified_at',
+         'email', 'password', 'role', 'permissions', 'status', 'last_login'
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string, string>
+     */
+    protected $dates = ['email_verified_at'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,7 +47,22 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'permissions' => 'array',
+            'last_login' => 'datetime'
         ];
+    }
+
+    /**
+     * Get the user profile associated with the user.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile() {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    public function qrCode()
+    {
+        return $this->hasOne(QRCodes::class, 'user_id');
     }
 }

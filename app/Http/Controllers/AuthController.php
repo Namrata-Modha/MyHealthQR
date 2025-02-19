@@ -2,75 +2,146 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Illuminate\Auth\Events\Registered;
 use App\Models\User;
 use App\Models\UserProfile;
-use App\Models\QrCode;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use DateTime;
+use Illuminate\Auth\Events\Registered;
+use App\Models\Log;
+use App\Models\Notification;
+use Carbon\Carbon;
 
-class AuthController extends Controller
-{
-    /**
-     * Handle user registration
-     */
-    public function register(Request $request)
-    {
-        // 1️⃣ Validate input
+class AuthController extends Controller {
+    
+    // Show Registration Page
+    public function showRegistrationForm() {
+        return view('auth.register');
+    }
+
+    // Register User
+    public function register(Request $request) {
+        
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:50',
             'last_name' => 'required|string|max:50',
-            'email' => 'required|email|unique:users,email',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                'unique:users',
+                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|ca|uk|in|info|io|co)$/i'
+            ],
             'password' => [
                 'required',
+                'string',
                 'min:8',
-                'regex:/[a-z]/',  // At least one lowercase letter
-                'regex:/[A-Z]/',  // At least one uppercase letter
-                'regex:/[0-9]/',  // At least one number
-                'regex:/[@$!%*#?&]/', // At least one special character
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'
             ],
             'date_of_birth' => 'required|date',
-            'contact_phone' => 'nullable|string|max:15',
-            'guardian_consent' => 'required_if:date_of_birth,' . now()->subYears(18)->format('Y-m-d') . '|accepted',
-        ]);
+            'pipeda_consent' => 'required|boolean',
+            'security_agreement_signed' => 'required|boolean',
+            'guardian_consent' => [
+                function ($attribute, $value, $fail) use ($request) {
+                    $dob = new DateTime($request->date_of_birth);
+                    $today = new DateTime();
+                    $age = $today->diff($dob)->y;
 
+                    if ($age < 18 && !$value) {
+                        $fail('Guardian consent is required for users under 18.');
+                    }
+                }
+            ]
+        ], [
+            'email.regex' => 'Email must have a valid domain like .com, .net, .org, etc.',
+            'password.min' => 'Password must be at least 8 characters long.',
+            'password.regex' => 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).',
+        ]);
+    
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput(); // Keeps previous values in the form
         }
 
-        // 2️⃣ Create User
+        
         $user = User::create([
-            'name' => $request->first_name . ' ' . $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'user',
+            'status' => 'active'
         ]);
-
-        // 3️⃣ Create User Profile
+    
         UserProfile::create([
             'user_id' => $user->id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'date_of_birth' => $request->date_of_birth,
-            'contact_phone' => $request->contact_phone,
-            'contact_email' => $request->email,
-            'privacy_settings' => json_encode([]),
             'guardian_consent' => $request->guardian_consent ?? false,
+            'pipeda_consent' => $request->pipeda_consent,
+            'security_agreement_signed' => $request->security_agreement_signed
         ]);
-
-        // 4️⃣ Generate and Store QR Code
-        $qrCode = Str::uuid();
-        QrCode::create([
-            'user_id' => $user->id,
-            'qr_code' => $qrCode,
-            'expiration_date' => now()->addYear(),
-        ]);
-
-        // 5️⃣ Send Email Verification (Laravel's built-in)
+        
+        /**
+         * Keeps the user logged in after registration so they can proceed to email verification without having to log in again.
+         * 
+         * This approach enhances user experience by reducing the number of steps required to complete the registration process.
+         * It ensures that users can immediately verify their email without the need to log in again, which can be a potential barrier.
+         */
+        Auth::login($user);
+        
+        // Send email verification notification
         event(new Registered($user));
 
-        return response()->json(['message' => 'User registered successfully. Please check your email for verification.', 'qr_code' => $qrCode], 201);
+        // Log the email sending activity
+        $log = Log::create([
+            'qr_code_id' => null, // Not related to QR code in this case
+            'view_timestamp' => Carbon::now(), // Timestamp for when the email was sent
+            'created_at' => Carbon::now(), // Log creation time
+        ]);
+
+        // Insert notification entry
+        Notification::create([
+            'user_id' => $user->id,
+            'log_id' => $log->id,
+            'notification_type' => 'Email Verification',
+            'status' => 'read', // Mark as read by default
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+    
+        return redirect()->route('verification.notice')->with('success', 'Registration successful! Please verify your email.');
+    }
+    
+
+    // Show Login Page
+    public function showLoginForm() {
+        return view('auth.login');
+    }
+
+    // Handle Login
+    public function login(Request $request) {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard');
+        }
+
+        return back()->withErrors(['email' => 'Invalid credentials.'])->withInput();
+    }
+
+    // Handle Logout
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/')->with('success', 'Logged out successfully!');
     }
 }
