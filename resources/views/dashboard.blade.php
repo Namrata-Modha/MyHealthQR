@@ -21,6 +21,14 @@
     @else
         <p>No QR code generated yet.</p>
     @endif
-
+    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+        @csrf
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
 </div>
 @endsection
+
+@section('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+@endsection
+

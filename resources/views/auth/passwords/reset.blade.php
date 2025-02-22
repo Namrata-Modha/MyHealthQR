@@ -2,64 +2,78 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <h2>Reset Password</h2>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+    @if(session('status'))
+        <div class="alert alert-success">{{ session('status') }}</div>
+    @endif
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+    <form id="resetPasswordForm" method="POST" action="{{ route('password.update') }}">
+        @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+        <input type="hidden" name="token" value="{{ $token }}">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <!-- Email (Read-only) -->
+        <div class="mb-3">
+            <label>Email <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" name="email" value="{{ $email ?? old('email') }}" readonly>
+            @error('email') <small class="text-danger">{{ $message }}</small> @enderror
         </div>
-    </div>
+
+        <!-- New Password -->
+        <div class="mb-3">
+            <label>New Password <span class="text-danger">*</span></label>
+            <input type="password" name="password" class="form-control" required>
+            @error('password') <small class="text-danger">{{ $message }}</small> @enderror
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-3">
+            <label>Confirm Password <span class="text-danger">*</span></label>
+            <input type="password" name="password_confirmation" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Reset Password</button>
+    </form>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+$(document).ready(function() {
+    $("#resetPasswordForm").validate({
+        rules: {
+            password: {
+                required: true,
+                minlength: 8,
+                regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+            },
+            password_confirmation: {
+                required: true,
+                equalTo: '[name="password"]'
+            }
+        },
+        messages: {
+            password: {
+                regex: "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*)."
+            },
+            password_confirmation: {
+                equalTo: "Passwords do not match."
+            }
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+
+    // Add custom regex validation
+    $.validator.addMethod("regex", function(value, element, pattern) {
+        return this.optional(element) || new RegExp(pattern).test(value);
+    });
+});
+</script>
+@endsection
+@section('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 @endsection

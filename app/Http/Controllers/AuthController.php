@@ -123,19 +123,33 @@ class AuthController extends Controller {
     }
 
     // Handle Login
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        /**
+         * Check if the "Remember Me" option is selected and attempt to authenticate the user.
+         * - `Auth::attempt($credentials, $remember)`: Attempts to authenticate the user with the provided credentials and the "Remember Me" option.
+         * - If authentication is successful:
+         *   - Regenerates the session to prevent session fixation.
+         *   - Redirects the user to the intended URL (default is '/dashboard') with a success message.
+         */
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+
+            return redirect()->intended('/dashboard')->with('success', 'Logged in successfully!');
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials.'])->withInput();
-    }
+        return back()->withErrors([
+            'email' => 'Invalid credentials.',
+        ])->withInput($request->only('email', 'remember'));
+}
+
 
     // Handle Logout
     public function logout(Request $request) {

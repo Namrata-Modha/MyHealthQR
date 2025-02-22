@@ -83,6 +83,9 @@
 
                         <button type="submit" class="btn btn-primary w-100">Sign Up</button>
                     </form>
+                    <div class="mt-3 text-center">
+                        Already a user? <a href="{{ route('login.form') }}" class="btn btn-primary">Login</a>
+                    </div>
                 </div>
             </div>
         </div>
