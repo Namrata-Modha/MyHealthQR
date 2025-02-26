@@ -7,9 +7,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bacon/bacon-qr-code": "^3.0",
         "doctrine/dbal": "^4.2",
         "laravel/framework": "^11.31",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "laravel/ui": "^4.6",
+        "symfony/mailer": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
