@@ -15,12 +15,12 @@ class Notification extends Model
         'user_id',
         'log_id',
         'notification_type',
-        'status',
         'created_at',
-        'updated_at',
     ];
 
     public $timestamps = false; // Using manual timestamps
+
+    protected $dates = ['created_at']; 
 
     // Relationship: Notification belongs to a user
     public function user()

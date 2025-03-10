@@ -100,7 +100,6 @@ class AuthController extends Controller {
         $log = Log::create([
             'qr_code_id' => null, // Not related to QR code in this case
             'view_timestamp' => Carbon::now(), // Timestamp for when the email was sent
-            'created_at' => Carbon::now(), // Log creation time
         ]);
 
         // Insert notification entry
@@ -108,9 +107,7 @@ class AuthController extends Controller {
             'user_id' => $user->id,
             'log_id' => $log->id,
             'notification_type' => 'Email Verification',
-            'status' => 'read', // Mark as read by default
             'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
         ]);
     
         return redirect()->route('verification.notice')->with('success', 'Registration successful! Please verify your email.');

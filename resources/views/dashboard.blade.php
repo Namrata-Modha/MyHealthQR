@@ -5,11 +5,17 @@
     <h1>Dashboard</h1>
 
     @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @elseif(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
-
+    
     @php
         $qrCode = \App\Models\QRCodes::where('user_id', auth()->id())->first();
     @endphp
@@ -21,10 +27,6 @@
     @else
         <p>No QR code generated yet.</p>
     @endif
-    <form action="{{ route('logout') }}" method="POST" class="d-inline">
-        @csrf
-        <button type="submit" class="btn btn-danger">Logout</button>
-    </form>
 </div>
 @endsection
 

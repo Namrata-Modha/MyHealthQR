@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\MedicalInfoController;
+use App\Http\Controllers\LogController;
 
-// 🔑 Default home route
+// Default home route
 Route::get('/', function () {
     return view('welcome');
 });
@@ -57,6 +60,15 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Dashboard
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+    Route::get('/home', fn() => view('home'))->name('home');
+
+    Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');
+    Route::post('/profile', [UserProfileController::class, 'update'])->name('user.profile.update');
+
+    Route::get('/medical-info', [MedicalInfoController::class, 'show'])->name('medical.info');
+    Route::post('/medical-info', [MedicalInfoController::class, 'update'])->name('medical.info.update');
+
+    Route::get('/logs', [LogController::class, 'index'])->name('logs');
 });
 
 // Forgot Password
