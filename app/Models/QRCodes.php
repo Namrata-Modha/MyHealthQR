@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class QRCodes extends Model
 {
     protected $table = 'qr_codes';
-    protected $fillable = ['user_id','qr_code', 'created_at', 'quick_help_enabled'];
+    protected $fillable = ['user_id','qr_code', 'created_at'];
     public $timestamps = false;
 
     public function user() {

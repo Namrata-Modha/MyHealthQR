@@ -14,7 +14,6 @@ class Log extends Model
     protected $fillable = [
         'qr_code_id',
         'view_timestamp',
-        'created_at',
     ];
 
     public $timestamps = false; // Since created_at is manually handled

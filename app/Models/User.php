@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -18,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var list<string>
      */
     protected $fillable = [
-         'email', 'password', 'role', 'permissions', 'status', 'last_login'
+         'email', 'password', 'role', 'status', 'last_login', 'email_verified_at'
     ];
 
     /**
@@ -47,7 +48,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
-            'permissions' => 'array',
             'last_login' => 'datetime'
         ];
     }
@@ -57,8 +57,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function profile() {
-        return $this->hasOne(UserProfile::class);
+    public function profile(): HasOne
+    {
+        return $this->hasOne(UserProfile::class, 'user_id', 'id');
     }
 
     public function qrCode()
