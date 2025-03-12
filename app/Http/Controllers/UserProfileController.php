@@ -25,18 +25,32 @@ class UserProfileController extends Controller
         $privacySettings = $profile->privacy_settings ?? '{}'; // Ensure it's at least an empty JSON object
 
         // Decode to check if it's valid JSON
-        $decodedSettings = json_decode($privacySettings, true);
+        if (is_array($privacySettings)) {
+            $decodedSettings = $privacySettings; // If already an array, use it directly
+        } else {
+            $decodedSettings = json_decode($privacySettings, true);
+        }
 
         // If JSON decoding fails or returns null, reset to empty array
         if (!is_array($decodedSettings)) {
             $decodedSettings = [];
         }
 
-        // Define the default settings (but ONLY for missing keys)
+        // Define the default settings (only apply if the key is missing)
         $defaultSettings = [
+            // User Profile Fields
             'contact_phone' => 'visible',
             'emergency_contact_name' => 'visible',
-            'emergency_contact_phone' => 'visible'
+            'emergency_contact_phone' => 'visible',
+
+            // Medical Info Fields
+            'allergies' => 'visible',
+            'conditions' => 'visible',
+            'medications' => 'visible',
+            'has_insurance' => 'visible',
+            'quickhelp_question_1' => 'visible',
+            'quickhelp_question_2' => 'visible',
+            'quickhelp_question_3' => 'visible',
         ];
 
         // Merge user settings with defaults (user preferences are preserved)

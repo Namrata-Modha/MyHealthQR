@@ -10,18 +10,18 @@ class MedicalInfo extends Model
     use HasFactory;
 
     protected $table = 'medical_info';
+
     protected $fillable = [
-        'user_id', 'allergies', 'conditions', 'medications', 'quickhelp_question_1', 'quickhelp_question_2', 'quickhelp_question_3'
+        'user_id',
+        'allergies',
+        'conditions',
+        'medications',
+        'quickhelp_answer_1',
+        'quickhelp_answer_2',
+        'quickhelp_answer_3',
     ];
 
-    protected $casts = [
-        'allergies' => 'array',
-        'conditions' => 'array',
-        'medications' => 'array',
-        'quickhelp_question_1' => 'array',
-        'quickhelp_question_2' => 'array',
-        'quickhelp_question_3' => 'array',
-    ];
+    protected $casts = [];
 
     public function user()
     {
