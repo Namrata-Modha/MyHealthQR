@@ -3,7 +3,7 @@
 @section('content')
 <div class="container my-4">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">Personal Information</div>
 
@@ -59,7 +59,6 @@
                                        name="contact_phone" id="contact_phone"
                                        value="{{ old('contact_phone', $profile->contact_phone ?? '') }}">
                                 <span class="input-group-text">
-                                    {{-- <i class="eye-icon fas fa-eye toggle-visibility" data-field="contact_phone" onclick="toggleVisibility('contact_phone')"></i> --}}
                                     <i class="eye-icon fas fa-eye toggle-visibility" data-field="contact_phone" onclick="toggleVisibility('contact_phone')"></i>
                                 </span>
                             </div>
@@ -110,5 +109,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="{{ asset('js/global.js') }}"></script>
 <script src="{{ asset('js/user_profile.js') }}"></script>
 @endsection

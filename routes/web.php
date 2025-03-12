@@ -65,7 +65,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');
     Route::post('/profile', [UserProfileController::class, 'update'])->name('user.profile.update');
 
-    Route::get('/medical-info', [MedicalInfoController::class, 'show'])->name('medical.info');
+    Route::get('/medical-info', [MedicalInfoController::class, 'index'])->name('medical.info');
     Route::post('/medical-info', [MedicalInfoController::class, 'update'])->name('medical.info.update');
 
     Route::get('/logs', [LogController::class, 'index'])->name('logs');
