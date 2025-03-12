@@ -14,6 +14,10 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                brandGreen: '#2E8B57', // Darker Green to match your logo
+                brandBlue: '#1E3A8A',  // Deep Blue for secondary elements
+            },
         },
     },
     plugins: [],
