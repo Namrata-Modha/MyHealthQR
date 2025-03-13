@@ -10,27 +10,27 @@
 </head>
 <body class="bg-gray-900 text-gray-100 h-screen flex items-center justify-center relative">
 
-    <!-- ✅ Background Image -->
+    <!-- Background Image -->
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
          style="background-image: url('{{ asset('images/hero-bg.jpg') }}');">
         <div class="absolute inset-0 bg-gray-900/70"></div>  <!-- Dark overlay for readability -->
     </div>
 
-    <!-- ✅ Fully Centered Signup Container -->
+    <!-- Fully Centered Signup Container -->
     <div class="w-full max-w-md p-8 bg-gray-800 bg-opacity-90 shadow-lg rounded-lg relative z-10">
         
-        <!-- ✅ Logo as a Banner -->
+        <!-- Logo as a Banner -->
         <img src="{{ asset('images/logo.png') }}" alt="MyHealthQR Logo" 
              class="w-full h-24 object-cover bg-gray-700 rounded-t-lg">
 
-        <!-- ✅ Signup Form Header -->
+        <!-- Signup Form Header -->
         <h2 class="text-2xl font-bold text-brandGreen text-center mt-4">Create Your Account</h2>
 
-        <!-- ✅ Signup Form -->
+        <!-- Signup Form -->
         <form id="signupForm" method="POST" action="{{ route('register') }}" class="mt-6 space-y-4">
             @csrf
 
-            <!-- ✅ First Name -->
+            <!-- First Name -->
             <div>
                 <label for="first_name" class="block text-gray-300 text-sm mb-1">First Name</label>
                 <input type="text" name="first_name" id="first_name"
@@ -39,7 +39,7 @@
                 @error('first_name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
 
-            <!-- ✅ Last Name -->
+            <!-- Last Name -->
             <div>
                 <label for="last_name" class="block text-gray-300 text-sm mb-1">Last Name</label>
                 <input type="text" name="last_name" id="last_name"
@@ -48,7 +48,7 @@
                 @error('last_name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
 
-            <!-- ✅ Email -->
+            <!-- Email -->
             <div>
                 <label for="email" class="block text-gray-300 text-sm mb-1">Email</label>
                 <input type="email" name="email" id="email"
@@ -57,7 +57,7 @@
                 @error('email') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
 
-            <!-- ✅ Password -->
+            <!-- Password -->
             <div>
                 <label for="password" class="block text-gray-300 text-sm mb-1">Password</label>
                 <input type="password" name="password" id="password"
@@ -66,7 +66,7 @@
                 @error('password') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
 
-            <!-- ✅ Date of Birth -->
+            <!-- Date of Birth -->
             <div>
                 <label for="date_of_birth" class="block text-gray-300 text-sm mb-1">Date of Birth</label>
                 <input type="date" name="date_of_birth" id="date_of_birth"
@@ -75,7 +75,7 @@
                 @error('date_of_birth') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
 
-            <!-- ✅ Guardian Consent Checkbox (Hidden by Default) -->
+            <!-- Guardian Consent Checkbox (Hidden by Default) -->
             <div id="guardianConsentField" class="hidden">
                 <label class="flex items-center space-x-2">
                     <input type="checkbox" name="guardian_consent" id="guardian_consent" class="text-brandGreen">
@@ -84,7 +84,7 @@
                 @error('guardian_consent') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
 
-            <!-- ✅ Terms & PIPEDA Consent -->
+            <!-- Terms & PIPEDA Consent -->
             <div>
                 <label class="flex items-center space-x-2">
                     <input type="checkbox" name="security_agreement_signed" class="text-brandGreen">
@@ -106,14 +106,14 @@
                 </label>
             </div>
 
-            <!-- ✅ Sign Up Button -->
+            <!-- Sign Up Button -->
             <button type="submit"
                 class="w-full bg-brandGreen text-white py-3 rounded-lg shadow-md hover:bg-green-700 transition-transform transform hover:scale-105 duration-300">
                 Sign Up
             </button>
         </form>
 
-        <!-- ✅ Already a User? -->
+        <!-- Already a User? -->
         <p class="text-gray-400 text-sm text-center mt-6">
             Already a user? <a href="{{ route('login') }}" class="text-brandBlue hover:underline">Login</a>
         </p>
