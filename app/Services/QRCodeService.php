@@ -36,9 +36,9 @@ class QRCodeService
         file_put_contents($filePath, $qrCodeData);
 
         if (file_exists($filePath)) {
-            \Log::info("✅ QR code saved at {$filePath}");
+            \Log::info(" QR code saved at {$filePath}");
         } else {
-            \Log::error("❌ Failed to save QR code at {$filePath}");
+            \Log::error(" Failed to save QR code at {$filePath}");
         }
 
         // Save QR code details in the database

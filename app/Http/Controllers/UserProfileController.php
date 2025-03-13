@@ -48,9 +48,9 @@ class UserProfileController extends Controller
             'conditions' => 'visible',
             'medications' => 'visible',
             'has_insurance' => 'visible',
-            'quickhelp_question_1' => 'visible',
-            'quickhelp_question_2' => 'visible',
-            'quickhelp_question_3' => 'visible',
+            'quickhelp_answer_1' => 'visible',
+            'quickhelp_answer_2' => 'visible',
+            'quickhelp_answer_3' => 'visible',
         ];
 
         // Merge user settings with defaults (user preferences are preserved)

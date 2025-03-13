@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\MedicalInfoController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\QRCodeController;
 
 // Default home route
 Route::get('/', function () {
@@ -83,4 +84,7 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 Route::get('/test', function () {
     return view('test');
 });
+
+//route that captures the QR code key and directs the user to the correct page.
+Route::get('/scan/{qr_code_key}', [QRCodeController::class, 'show'])->name('qr.view');
 

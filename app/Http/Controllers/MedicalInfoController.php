@@ -64,17 +64,17 @@ class MedicalInfoController extends Controller
         $user = Auth::user();
         $medicalInfo = $user->medicalInfo ?? new MedicalInfo(['user_id' => $user->id]);
 
-        // ✅ Save medical info
+        // Save medical info
         $medicalInfo->fill($request->only([
             'allergies', 'conditions', 'medications',
             'quickhelp_answer_1', 'quickhelp_answer_2', 'quickhelp_answer_3'
         ]));
         $medicalInfo->save();
 
-        // ✅ Save `has_insurance` and `quick_help` in `user_profiles`
+        // Save `has_insurance` and `quick_help` in `user_profiles`
         $userProfile = $user->profile ?? new UserProfile(['user_id' => $user->id]);
 
-        // ✅ Privacy settings update (SAME AS USER PROFILE)
+        // Privacy settings update (if provided)
         $privacySettings = $request->privacy_settings ? json_decode($request->privacy_settings, true) : [];
 
         $userProfile->fill($request->except(['privacy_settings']));

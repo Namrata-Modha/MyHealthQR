@@ -89,7 +89,7 @@ function toggleVisibility(field) {
 
     updateHiddenInput(privacySettings);
 
-    // ✅ Fix: Ensure eye icon updates correctly
+    //  Fix: Ensure eye icon updates correctly
     setInitialIconState(field, newState);
 }
 
@@ -108,7 +108,7 @@ function updateHiddenInput(updatedSettings) {
     console.log("Before Update - Current Settings:", currentSettings);
     console.log("Incoming Updates (should only contain the toggled field):", updatedSettings);
 
-    // ✅ Only update the changed field, preserving others
+    //  Only update the changed field, preserving others
     Object.assign(currentSettings, updatedSettings);
 
     console.log("After Update - Final Settings (should match expected values):", currentSettings);
