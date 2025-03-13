@@ -42,9 +42,9 @@ class MedicalInfoController extends Controller
             'conditions' => 'visible',
             'medications' => 'visible',
             'has_insurance' => 'visible',
-            'quickhelp_question_1' => 'visible',
-            'quickhelp_question_2' => 'visible',
-            'quickhelp_question_3' => 'visible',
+            'quickhelp_answer_1' => 'visible',
+            'quickhelp_answer_2' => 'visible',
+            'quickhelp_answer_3' => 'visible',
         ];
 
         // Merge user settings with defaults (user preferences are preserved)
@@ -61,17 +61,6 @@ class MedicalInfoController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
-            'allergies' => 'nullable|string',
-            'conditions' => 'nullable|string',
-            'medications' => 'nullable|string',
-            'quickhelp_answer_1' => 'nullable|string',
-            'quickhelp_answer_2' => 'nullable|string',
-            'quickhelp_answer_3' => 'nullable|string',
-            'has_insurance' => 'nullable|boolean',
-            'quick_help_enabled' => 'nullable|boolean',
-        ]);
-
         $user = Auth::user();
         $medicalInfo = $user->medicalInfo ?? new MedicalInfo(['user_id' => $user->id]);
 

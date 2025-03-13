@@ -80,16 +80,16 @@
                             <label class="form-check-label" for="quick_help_enabled">Enable Quick Help</label>
                         </div>
 
-                        <h5>Quick Help Questions</h5>
+                        <h5>Quick Help Questionaire</h5>
 
                         <!-- Emergency Steps -->
                         <div class="mb-3">
                             <label class="form-label">What immediate steps should be taken in case of an emergency?</label>
                             <div class="input-group">
-                                <textarea class="form-control" name="quickhelp_question_1">{{ old('quickhelp_question_1', $medicalInfo->quickhelp_question_1 ?? '') }}</textarea>
+                                <textarea class="form-control" name="quickhelp_answer_1">{{ old('quickhelp_answer_1', $medicalInfo->quickhelp_answer_1 ?? '') }}</textarea>
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_question_1" 
-                                       onclick="toggleVisibility('quickhelp_question_1')"></i>
+                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_answer_1" 
+                                       onclick="toggleVisibility('quickhelp_answer_1')"></i>
                                 </span>
                             </div>
                         </div>
@@ -98,10 +98,10 @@
                         <div class="mb-3">
                             <label class="form-label">What medications or treatments are needed in the emergency situation?</label>
                             <div class="input-group">
-                                <textarea class="form-control" name="quickhelp_question_2">{{ old('quickhelp_question_2', $medicalInfo->quickhelp_question_2 ?? '') }}</textarea>
+                                <textarea class="form-control" name="quickhelp_answer_2">{{ old('quickhelp_answer_2', $medicalInfo->quickhelp_answer_2 ?? '') }}</textarea>
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_question_2" 
-                                       onclick="toggleVisibility('quickhelp_question_2')"></i>
+                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_answer_2" 
+                                       onclick="toggleVisibility('quickhelp_answer_2')"></i>
                                 </span>
                             </div>
                         </div>
@@ -110,10 +110,10 @@
                         <div class="mb-3">
                             <label class="form-label">What should be done if the condition worsens?</label>
                             <div class="input-group">
-                                <textarea class="form-control" name="quickhelp_question_3">{{ old('quickhelp_question_3', $medicalInfo->quickhelp_question_3 ?? '') }}</textarea>
+                                <textarea class="form-control" name="quickhelp_answer_3">{{ old('quickhelp_answer_3', $medicalInfo->quickhelp_answer_3 ?? '') }}</textarea>
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_question_3" 
-                                       onclick="toggleVisibility('quickhelp_question_3')"></i>
+                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_answer_3" 
+                                       onclick="toggleVisibility('quickhelp_answer_3')"></i>
                                 </span>
                             </div>
                         </div>
