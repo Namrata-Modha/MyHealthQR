@@ -79,7 +79,7 @@
                         </div>
                         
 
-                        <h5>Quick Help Questions</h5>
+                        <h5>Quick Help Questionaire</h5>
 
                         <!-- Emergency Steps -->
                         <div class="mb-3">
