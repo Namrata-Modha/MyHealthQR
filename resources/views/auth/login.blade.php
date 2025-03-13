@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MyHealthQR</title>
     
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
     <!-- Load Tailwind CSS & JavaScript using Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/passwordStrength.js'])
+
+    
 </head>
 <body class="bg-gray-900 text-gray-100 h-screen flex items-center justify-center relative">  <!-- Full-page center -->
     <!-- ✅ Background Image -->
@@ -15,7 +22,7 @@
         <div class="absolute inset-0 bg-gray-900/70"></div>  <!-- Dark overlay for readability -->
     </div>
     <!-- ✅ Fully Centered Login Container -->
-    <div class="w-full max-w-sm p-8 bg-gray-800 bg-opacity-90 shadow-lg rounded-lg relative z-10">
+    <div class="w-full max-w-sm p-8 bg-gray-800 bg-opacity-90 shadow-lg rounded-lg relative z-10  border border-brandGreen">
         <!-- ✅ Logo & Title -->
         <div class="text-center">
             <img src="{{ asset('images/loginBanner.jpg') }}" alt="MyHealthQR Logo" 
@@ -46,11 +53,21 @@
             </div>
 
             <!-- ✅ Password Field -->
-            <div>
+            <div class="relative">
                 <label for="password" class="block text-gray-300 text-sm mb-1">Password</label>
-                <input type="password" id="password" name="password" required
-                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-900 focus:ring-2 focus:ring-brandGreen focus:outline-none">
+                <input type="password" name="password" id="password"
+                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:ring-2 focus:ring-brandGreen focus:outline-none pr-10"
+                    placeholder="Password">
+                
+                <!-- ✅ Eye Icon (Using FontAwesome) -->
+                <button type="button" id="toggle-password" class="absolute inset-y-0 right-3 flex items-center">
+                    <i id="eye-icon" class="fa fa-eye text-gray-400 hover:text-white transition duration-200"></i>
+                </button>
             </div>
+
+
+
+
 
             <!-- ✅ Remember Me & Forgot Password -->
             <div class="flex items-center justify-between text-sm">
