@@ -42,9 +42,9 @@ class MedicalInfoController extends Controller
             'conditions' => 'visible',
             'medications' => 'visible',
             'has_insurance' => 'visible',
-            'quickhelp_question_1' => 'visible',
-            'quickhelp_question_2' => 'visible',
-            'quickhelp_question_3' => 'visible',
+            'quickhelp_answer_1' => 'visible',
+            'quickhelp_answer_2' => 'visible',
+            'quickhelp_answer_3' => 'visible',
         ];
 
         // Merge user settings with defaults (user preferences are preserved)
@@ -61,31 +61,20 @@ class MedicalInfoController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
-            'allergies' => 'nullable|string',
-            'conditions' => 'nullable|string',
-            'medications' => 'nullable|string',
-            'quickhelp_answer_1' => 'nullable|string',
-            'quickhelp_answer_2' => 'nullable|string',
-            'quickhelp_answer_3' => 'nullable|string',
-            'has_insurance' => 'nullable|boolean',
-            'quick_help_enabled' => 'nullable|boolean',
-        ]);
-
         $user = Auth::user();
         $medicalInfo = $user->medicalInfo ?? new MedicalInfo(['user_id' => $user->id]);
 
-        // ✅ Save medical info
+        // Save medical info
         $medicalInfo->fill($request->only([
             'allergies', 'conditions', 'medications',
             'quickhelp_answer_1', 'quickhelp_answer_2', 'quickhelp_answer_3'
         ]));
         $medicalInfo->save();
 
-        // ✅ Save `has_insurance` and `quick_help` in `user_profiles`
+        // Save `has_insurance` and `quick_help` in `user_profiles`
         $userProfile = $user->profile ?? new UserProfile(['user_id' => $user->id]);
 
-        // ✅ Privacy settings update (SAME AS USER PROFILE)
+        // Privacy settings update (if provided)
         $privacySettings = $request->privacy_settings ? json_decode($request->privacy_settings, true) : [];
 
         $userProfile->fill($request->except(['privacy_settings']));

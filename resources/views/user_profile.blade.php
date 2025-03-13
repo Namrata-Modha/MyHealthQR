@@ -59,7 +59,7 @@
                                        name="contact_phone" id="contact_phone"
                                        value="{{ old('contact_phone', $profile->contact_phone ?? '') }}">
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="contact_phone" onclick="toggleVisibility('contact_phone')"></i>
+                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="contact_phone" onclick="toggleVisibility('contact_phone')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide your contact number. If visible, third parties can see it when scanning your QR code"></i>
                                 </span>
                             </div>
                             @error('contact_phone') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -73,7 +73,7 @@
                                        name="emergency_contact_name" id="emergency_contact_name"
                                        value="{{ old('emergency_contact_name', $profile->emergency_contact_name ?? '') }}">
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="emergency_contact_name" onclick="toggleVisibility('emergency_contact_name')"></i>
+                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="emergency_contact_name" onclick="toggleVisibility('emergency_contact_name')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide your emergency contact's name. If visible, it will be available when your QR code is scanned."></i>
                                 </span>
                             </div>
                             @error('emergency_contact_name') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -87,7 +87,7 @@
                                        name="emergency_contact_phone" id="emergency_contact_phone"
                                        value="{{ old('emergency_contact_phone', $profile->emergency_contact_phone ?? '') }}">
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="emergency_contact_phone" onclick="toggleVisibility('emergency_contact_phone')"></i>
+                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="emergency_contact_phone" onclick="toggleVisibility('emergency_contact_phone')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide your emergency contact’s phone number. If visible, others can call them in an emergency."></i>
                                 </span>
                             </div>
                             @error('emergency_contact_phone') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -111,4 +111,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 <script src="{{ asset('js/global.js') }}"></script>
 <script src="{{ asset('js/user_profile.js') }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
 @endsection

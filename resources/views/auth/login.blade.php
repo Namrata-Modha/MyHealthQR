@@ -13,10 +13,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite(['resources/js/passwordStrength.js'])
 
-    
+
 </head>
 <body class="bg-gray-900 text-gray-100 h-screen flex items-center justify-center relative">  <!-- Full-page center -->
-    <!-- ✅ Background Image -->
+    <!-- Background Image -->
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
          style="background-image: url('{{ asset('images/hero-bg.jpg') }}');">
         <div class="absolute inset-0 bg-gray-900/70"></div>  <!-- Dark overlay for readability -->
@@ -30,7 +30,7 @@
             <h2 class="text-2xl font-bold text-brandGreen mt-4">Sign in to MyHealthQR</h2>
         </div>
 
-        <!-- ✅ Flash Messages -->
+        <!-- Flash Messages -->
         @if(session('success'))
             <div class="bg-green-500 text-white text-sm px-4 py-2 rounded-md mt-4 text-center shadow-md">
                 {{ session('success') }}
@@ -41,11 +41,11 @@
             </div>
         @endif
 
-        <!-- ✅ Centered Login Form -->
+        <!-- Centered Login Form -->
         <form method="POST" action="{{ route('login') }}" class="mt-6 space-y-4">
             @csrf
             
-            <!-- ✅ Email Field -->
+            <!-- Email Field -->
             <div>
                 <label for="email" class="block text-gray-300 text-sm mb-1">Email Address</label>
                 <input type="email" id="email" name="email" required autofocus
@@ -80,14 +80,14 @@
                 </a>
             </div>
 
-            <!-- ✅ Centered Login Button -->
+            <!-- Centered Login Button -->
             <button type="submit"
                 class="w-full bg-brandGreen text-white py-3 rounded-lg shadow-md hover:bg-green-700 transition-transform transform hover:scale-105 duration-300">
                 Sign In
             </button>
         </form>
 
-        <!-- ✅ Register Link -->
+        <!-- Register Link -->
         <p class="text-gray-400 text-sm text-center mt-6">
             Don't have an account? 
             <a href="{{ route('register') }}" class="text-brandBlue hover:underline">Sign up</a>
