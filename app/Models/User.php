@@ -66,4 +66,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(QRCodes::class, 'user_id');
     }
+
+    public function medicalInfo()
+    {
+        return $this->hasOne(MedicalInfo::class, 'user_id');
+    }
+
 }
