@@ -11,7 +11,7 @@
 
     <!-- Load Tailwind CSS & JavaScript using Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite(['resources/js/passwordStrength.js'])
+    @vite(['resources/js/passwordValidation.js'])
 
 
 </head>
@@ -60,8 +60,9 @@
                     placeholder="Password">
                 
                 <!-- ✅ Eye Icon (Using FontAwesome) -->
-                <button type="button" id="toggle-password" class="absolute inset-y-0 right-3 flex items-center">
-                    <i id="eye-icon" class="fa fa-eye text-gray-400 hover:text-white transition duration-200"></i>
+                <button type="button" id="toggle-password" 
+                    class="absolute top-3/4 right-3 transform -translate-y-1/2 flex items-center">
+                    <i id="eye-icon" class="fa fa-eye-slash text-gray-400 hover:text-white transition duration-200"></i>
                 </button>
             </div>
 
