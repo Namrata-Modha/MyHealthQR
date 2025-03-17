@@ -72,7 +72,7 @@
                         <!-- Quick Help -->
                         <div class="mb-3">
                             <input type="checkbox" class="form-check-input" id="quick_help_enabled" name="quick_help_enabled" 
-                                   {{ old('quick_help_enabled', $userProfile->quick_help_enabled ?? true) ? 'checked' : '' }}>
+                                   {{ old('quick_help_enabled', $healthQrEnabled) ? 'checked' : '' }}>
                             <label class="form-check-label" for="quick_help_enabled" data-bs-toggle="tooltip" data-bs-placement="auto" title="Enable or disable Quick Help. If enabled, third-party users can see your Quick Help instructions.">
                                 Enable Quick Help
                             </label>
