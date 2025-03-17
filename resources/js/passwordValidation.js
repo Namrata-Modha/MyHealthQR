@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function toggleVisibility(inputField, eyeIcon) {
         if (inputField.type === "password") {
             inputField.type = "text";
-            eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
+            eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
         } else {
             inputField.type = "password";
-            eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
+            eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
         }
     }
 

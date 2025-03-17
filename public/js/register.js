@@ -1,4 +1,5 @@
-$(document).ready(function () {
+
+document.addEventListener("DOMContentLoaded", function () {
     // Custom validation method for Email regex
     $.validator.addMethod("validEmail", function(value, element) {
         return this.optional(element) || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|ca|uk|in|info|io|co)$/i.test(value);
