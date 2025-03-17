@@ -56,7 +56,9 @@ class MedicalInfoController extends Controller
         // Ensure `has_insurance` is passed from `user_profiles`
         $hasInsurance = $profile->has_insurance ?? false;
 
-        return view('medical_info', compact('medicalInfo', 'hasInsurance', 'privacySettings'));
+        $healthQrEnabled = $profile->quick_help_enabled ?? false;
+
+        return view('medical_info', compact('medicalInfo', 'hasInsurance', 'privacySettings', 'healthQrEnabled'));
     }
 
     public function update(Request $request)
