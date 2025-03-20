@@ -83,7 +83,7 @@
 
                         <!-- Emergency Steps -->
                         <div class="mb-3">
-                            <label class="form-label">What immediate steps should be taken in case of an emergency?</label>
+                            <label class="form-label"><b>What immediate steps should be taken in case of an emergency?</b></label>
                             <div class="input-group">
                                 <textarea class="form-control" name="quickhelp_answer_1">{{ old('quickhelp_answer_1', $medicalInfo->quickhelp_answer_1 ?? '') }}</textarea>
                                 <span class="input-group-text">
@@ -94,7 +94,7 @@
 
                         <!-- Emergency Medications -->
                         <div class="mb-3">
-                            <label class="form-label">What medications or treatments are needed in the emergency situation?</label>
+                            <label class="form-label"><b>What medications or treatments are needed in the emergency situation?</b></label>
                             <div class="input-group">
                                 <textarea class="form-control" name="quickhelp_answer_2">{{ old('quickhelp_answer_2', $medicalInfo->quickhelp_answer_2 ?? '') }}</textarea>
                                 <span class="input-group-text">
@@ -105,7 +105,7 @@
 
                         <!-- Condition Worsening -->
                         <div class="mb-3">
-                            <label class="form-label">What should be done if the condition worsens?</label>
+                            <label class="form-label"><b>What should be done if the condition worsens?</b></label>
                             <div class="input-group">
                                 <textarea class="form-control" name="quickhelp_answer_3">{{ old('quickhelp_answer_3', $medicalInfo->quickhelp_answer_3 ?? '') }}</textarea>
                                 <span class="input-group-text">
@@ -118,7 +118,9 @@
                         <input type="hidden" name="privacy_settings" id="privacy_settings" value="{{ $privacySettings }}">
 
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+                        <button type="submit" class="btn btn-primary w-100" onclick="sessionStorage.setItem('refreshVisibility', 'true'); ">
+                            Save Changes
+                        </button>
 
                     </form>
                 </div>
