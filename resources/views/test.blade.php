@@ -10,12 +10,7 @@
 
     <!-- Load Tailwind CSS & JavaScript using Vite -->
     @section('scripts')
-    <!-- ✅ Ensure jQuery is Loaded First -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        @vite(['resources/js/register.js'])  <!-- ✅ Keep Namrata’s script -->
-        @vite(['resources/js/passwordValidation.js'])
-    @endsection
-
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/register.js'])
 
 </head>
 <body class="bg-brandGrayDark text-brandGrayLight min-h-screen flex flex-col items-center justify-between relative">
@@ -27,9 +22,19 @@
         <div class="absolute inset-0 bg-brandGrayDark/70"></div>  <!-- Dark overlay for readability -->
     </div>
 
+    @if ($errors->any())
+    <div class="bg-red-500 text-white text-sm px-4 py-2 rounded-md mt-4 text-center shadow-md">
+        <strong>🚨 Validation Errors Detected:</strong>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>⚠️ {{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <!-- ✅ Fully Centered Signup Container -->
-    <div class="w-full max-w-md p-8 bg-brandGrayDark bg-opacity-95 shadow-lg rounded-lg relative z-10 mt-12 mb-8 border border-brandGreen">   
+    <div class="w-full max-w-md p-10 bg-brandGrayDark bg-opacity-95 shadow-lg rounded-lg relative z-10 mt-12 mb-8 border border-brandGreen">   
          <!-- ✅ Logo as a Banner -->
         <img src="{{ asset('images/logo.png') }}" alt="MyHealthQR Logo" 
              class="w-full h-24 object-cover bg-brandGrayLight rounded-t-lg">
@@ -39,7 +44,7 @@
 
         <!-- Signup Form -->
         <form id="signupForm" method="POST" action="{{ route('register') }}" class="mt-6 space-y-4" novalidate>
-            @csrf
+             @csrf
 
             <!-- First Name -->
             <div>
@@ -132,8 +137,8 @@
                 <label class="flex items-center space-x-2">
                     <input type="checkbox" name="security_agreement_signed" class="text-brandGreen">
                     <span class="text-brandGrayLight text-base">
-                        I agree to the <a href="{{ route('terms') }}" class="text-brandBlue hover:underline">Terms of Service</a> 
-                        and <a href="{{ route('privacy') }}" class="text-brandBlue hover:underline">Privacy Policy</a>.
+                        I agree to the <a href="{{ route('terms') }}" class="text-brandBlue hover:underline" style="font-weight: bold;">Terms of Service</a> 
+                        and <a href="{{ route('privacy') }}" class="text-brandBlue hover:underline" style="font-weight: bold;">Privacy Policy</a>.
                     </span>
                 </label>
                 @error('security_agreement_signed')
@@ -147,7 +152,7 @@
                     <span class="text-brandGrayLight text-base">
                         I consent to the collection and use of my personal data in compliance with 
                         <a href="https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda_brief/" 
-                        class="text-brandBlue hover:underline">PIPEDA (Canadian law)</a>.
+                        class="text-brandBlue hover:underline" style="font-weight: bold;">PIPEDA (Canadian law)</a>.
                     </span>
                 </label>
                 @error('pipeda_consent') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
@@ -160,13 +165,34 @@
             </button>
         </form>
         <div class="mt-3 text-center">
-            Already a user? <a href="{{ route('login.form') }}" class="btn btn-primary">Login</a>
+            Already a user? <a href="{{ route('login.form') }}" class="btn btn-primary" style="font-weight: bold; text-decoration: underline;">Login</a>
         </div>
     </div>
     <!-- ✅ Footer (Same as Welcome Page) -->
     <footer class="bg-brandGrayDark text-brandGrayLight text-center py-2 w-full mt-auto relative z-10">
-        <p>&copy; 2025 MyHealthQR. All Rights Reserved.</p>
+        <p>&copy; {{ date('Y') }} MyHealthQR. All Rights Reserved.</p>
     </footer>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const signupForm = document.getElementById("signupForm");
+
+    if (signupForm) {
+        signupForm.addEventListener("submit", function (e) {
+            console.log("🚀 Form Submission Attempted!");
+
+            if (typeof $ !== "undefined" && $("#signupForm").length > 0 && !$("#signupForm").valid()) {
+                console.log("❌ Form Validation Failed - Check Error Messages");
+                e.preventDefault(); // ✅ Stop submission if validation fails
+                return;
+            }
+
+            console.log("✅ Form Passed Validation - Submitting!");
+        });
+    }
+});
+</script>
+
 
 </body>
 </html>

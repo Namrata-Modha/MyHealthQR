@@ -1,7 +1,10 @@
+$(document).ready(function () {
 
-document.addEventListener("DOMContentLoaded", function () {
+    console.log("🚀 jQuery is running!");
+
     // Custom validation method for Email regex
     $.validator.addMethod("validEmail", function(value, element) {
+        console.log("📧 Email validation: ", value);
         return this.optional(element) || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|ca|uk|in|info|io|co)$/i.test(value);
     }, "Please enter a valid email with a proper domain (e.g., .com, .net, .org).");
     
@@ -55,10 +58,21 @@ document.addEventListener("DOMContentLoaded", function () {
             $(element).next(".invalid-feedback").remove(); // Remove error message when valid
         },
         submitHandler: function (form, event) {
-            // event.preventDefault(); // Stop direct form submission
+            if (!$("#signupForm").valid()) {
+                console.log("❌ Form Validation Failed!");
+                return;
+            }
+            console.log("✅ Validation Passed - Submitting...");
+        
             $('#submit').attr('disabled', 'disabled'); // Disable submit button
             form.submit();
+        
+            // Capture Laravel session error messages
+            setTimeout(() => {
+                console.log("⚠️ Laravel Validation Error: ", $("#error-message").text());
+            }, 500);
         }
+        
     });
 
     // Guardian Consent Logic
@@ -84,3 +98,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+

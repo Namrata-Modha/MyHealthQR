@@ -39,3 +39,32 @@ input[type="date"]::after {
     font-size: 0.875rem; /* Default is text-xs (0.75rem), this increases to text-sm */
     font-weight: 400; /* Slightly bolder for readability */
 }
+
+/* ✅ Tailwind-compatible error label styling */
+label.error {
+    @apply text-red-500 text-sm mt-1 block;
+}
+
+
+.max-w-md {
+    max-width: 36rem;
+}
+
+:root {
+    --bg-color: #ffffff; /* Light Mode Background */
+    --text-color: #1f2937; /* Light Mode Text */
+    --border-color: #d1d5db;
+}
+
+.dark {
+    --bg-color: #111827; /* Dark Mode Background */
+    --text-color: #ffffff; /* Dark Mode Text */
+    --border-color: #374151;
+}
+
+/* Apply the colors to body */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

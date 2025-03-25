@@ -1,4 +1,12 @@
 import './bootstrap';
+import $ from 'jquery';
+import 'jquery-validation';
+
+window.$ = $;
+window.jQuery = $;
+
+console.log("✅ app.js jQuery loaded:", typeof $ !== 'undefined' ? $.fn.jquery : 'not loaded');
+console.log("✅ jQuery Validate loaded:", typeof $.validator !== 'undefined');
 
 document.addEventListener("DOMContentLoaded", function () {
     const dateOfBirthInput = document.getElementById("date_of_birth");
@@ -7,49 +15,84 @@ document.addEventListener("DOMContentLoaded", function () {
     const signupBtn = document.getElementById("signup-btn");
     const signupForm = document.getElementById("signupForm");
 
+    // ✅ Ensure form submission only happens if validation passes
     if (signupBtn && signupForm) {
-        signupForm.addEventListener("submit", function () {
-            signupBtn.disabled = true; // ✅ Disable button after clicking
-            signupBtn.classList.add("opacity-50", "cursor-not-allowed"); // ✅ Add visual feedback
+        signupForm.addEventListener("submit", function (e) {
+            if (typeof $ !== "undefined" && $("#signupForm").length > 0 && !$("#signupForm").valid()) {
+                e.preventDefault(); // ✅ Stop submission if validation fails
+                return;
+            }
+            signupBtn.disabled = true; 
+            signupBtn.classList.add("opacity-50", "cursor-not-allowed"); 
         });
     }
-    if (dateOfBirthInput) {
-        // ✅ Restrict date picker to prevent future dates
-        const today = new Date().toISOString().split("T")[0];
-        dateOfBirthInput.setAttribute("max", today);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const lightIcon = document.getElementById('theme-toggle-light');
+    const darkIcon = document.getElementById('theme-toggle-dark');
+
+    // ✅ Ensure elements exist before accessing classList
+    if (!themeToggle || !lightIcon || !darkIcon) {
+        console.warn("Theme toggle elements not found. Skipping theme script.");
+        return; // Exit script if elements are missing
     }
 
-    function checkAge() {
-        if (!dateOfBirthInput.value) return; // ✅ Prevents error when field is empty
-    
-        const birthDate = new Date(dateOfBirthInput.value);
-        const today = new Date();
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const monthDiff = today.getMonth() - birthDate.getMonth();
-    
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-    
-        // ✅ Show Guardian Consent only if under 18
-        if (age < 18) {
-            guardianConsentField.classList.remove("hidden");
+    // Check user preference from localStorage
+    if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.remove('dark');
+        lightIcon.classList.remove('hidden');
+        darkIcon.classList.add('hidden');
+    } else {
+        document.documentElement.classList.add('dark');
+        darkIcon.classList.remove('hidden');
+        lightIcon.classList.add('hidden');
+    }
+
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            lightIcon.classList.remove('hidden');
+            darkIcon.classList.add('hidden');
         } else {
-            guardianConsentField.classList.add("hidden");
-            guardianConsentCheckbox.checked = false; // ✅ Ensure it's unchecked if hidden
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
         }
-    }
-    
+    });
+});
 
-    if (dateOfBirthInput) {
-        dateOfBirthInput.addEventListener("change", checkAge);
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    const loginBtn = document.getElementById("login-btn");
+    const loginForm = document.getElementById("loginForm");
 
-    // ✅ Ensure error stays visible after submission if unchecked
-    if (guardianConsentCheckbox && guardianConsentCheckbox.hasAttribute("required")) {
-        guardianConsentField.classList.remove("hidden");
-    }
+    if (loginBtn && loginForm) {
+        loginForm.addEventListener("submit", function (e) {
+            // ✅ If using jQuery validation, ensure the form is valid before submitting
+            if (typeof $ !== "undefined" && $("#loginForm").length && !$("#loginForm").valid()) {
+                e.preventDefault();
+                return;
+            }
 
-    // ✅ Run check on page load
-    checkAge();
+            loginBtn.disabled = true;
+            loginBtn.classList.add("opacity-50", "cursor-not-allowed");
+        });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const navToggle = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("mobile-menu");
+
+    if (navToggle) {
+        console.log("✅ nav-toggle.js loaded");
+
+        navToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("hidden");
+        });
+    }
 });

@@ -20,7 +20,7 @@
                         <!-- Email (Read-Only) -->
                         <div class="mb-3">
                             <label class="form-label">Email (Read-Only)</label>
-                            <input type="email" class="form-control" value="{{ $user->email }}" readonly>
+                            <input type="email" class="form-control text-brandGrayDark" value="{{ $user->email }}" readonly>
                         </div>
 
                         <!-- Date of Birth (Read-Only) -->
