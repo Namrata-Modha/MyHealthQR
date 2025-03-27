@@ -1,13 +1,22 @@
 $(document).ready(function () {
     
     let privacySettings = loadPrivacySettings();
-    console.log("Loaded Privacy Settings on Page Load:", privacySettings);
+    console.log("🔄 Loaded Privacy Settings on Page Load:", privacySettings);
 
-    //  Set correct visibility icons on page load
+    // 🔹 Ensure visibility settings are reapplied on every page load
+    applyVisibilitySettings();
+
+    // 🔹 Reapply visibility settings if triggered after save
+    if (sessionStorage.getItem("refreshVisibility") === "true") {
+        console.log("🔄 Refreshing Visibility Settings After Save...");
+        applyVisibilitySettings();
+        sessionStorage.removeItem("refreshVisibility"); // Reset after execution
+    }
+
+    // Set correct visibility icons on page load
     $(".toggle-visibility").each(function () {
         let field = $(this).data("field");
         let visibilityState = privacySettings[field] || "visible"; // Default to visible
-
         console.log(`Setting initial icon state for ${field}: ${visibilityState}`);
         setInitialIconState(field, visibilityState);
     });
@@ -19,6 +28,23 @@ $(document).ready(function () {
         toggleVisibility(field);
     });
 });
+
+/**
+ * Function to apply saved visibility settings on every load
+ */
+function applyVisibilitySettings() {
+    console.log("✅ Applying Saved Visibility Settings...");
+
+    let privacySettings = loadPrivacySettings();
+
+    $(".toggle-visibility").each(function () {
+        let field = $(this).data("field");
+        let visibilityState = privacySettings[field] || "visible"; // Default to visible
+
+        console.log(`Applying state for ${field}: ${visibilityState}`);
+        setInitialIconState(field, visibilityState);
+    });
+}
 
 /**
  * Loads privacy settings from a hidden input field with the ID "privacy_settings".
