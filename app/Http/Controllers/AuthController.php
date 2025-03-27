@@ -135,7 +135,7 @@ class AuthController extends Controller {
          *   - Redirects the user to the intended URL (default is '/dashboard') with a success message.
          */
         $remember = $request->has('remember');
-
+        
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
