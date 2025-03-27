@@ -12,9 +12,16 @@
 
     <!-- ✅ Load Tailwind + Your Vite Files -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
+<style>
+    .tooltip {
+        z-index: 9999 !important;
+    }
+</style>
+
 <!-- <body class="bg-brandGrayDark text-brandGrayLight min-h-screen flex flex-col justify-between relative z-10">-->
 
 <body class="bg-brandGrayDark text-brandGrayLight min-h-screen flex flex-col relative z-10">

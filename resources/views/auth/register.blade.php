@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Load Tailwind CSS & JavaScript using Vite -->
-    @section('scripts')
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/register.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite(['resources/js/passwordValidation.js'])
 
 </head>
@@ -111,8 +110,7 @@
             <!-- ✅ Guardian Consent Checkbox (Only Shows If Under 18) -->
             <div id="guardianConsentField" class="{{ old('date_of_birth') && (!$errors->has('guardian_consent') ? 'hidden' : '') }}">
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" name="guardian_consent" id="guardian_consent" class="text-brandGreen"
-                        {{ old('guardian_consent') ? 'checked' : '' }}>
+                    <input type="checkbox" name="guardian_consent" id="guardian_consent" class="text-brandGreen" {{ old('guardian_consent') ? 'checked' : '' }}>
                     <span class="text-brandGrayLight text-base">I am the guardian of this user.</span>
                 </label>
                 @error('guardian_consent') 
@@ -173,25 +171,10 @@
         <p>&copy; {{ date('Y') }} MyHealthQR. All Rights Reserved.</p>
     </footer>
 
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const signupForm = document.getElementById("signupForm");
-
-    if (signupForm) {
-        signupForm.addEventListener("submit", function (e) {
-            console.log("🚀 Form Submission Attempted!");
-
-            if (typeof $ !== "undefined" && $("#signupForm").length > 0 && !$("#signupForm").valid()) {
-                console.log("❌ Form Validation Failed - Check Error Messages");
-                e.preventDefault(); // ✅ Stop submission if validation fails
-                return;
-            }
-
-            console.log("✅ Form Passed Validation - Submitting!");
-        });
-    }
-});
-</script>
+     <!-- Bootstrap + jQuery Validation -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="{{ asset('js/register.js') }}"></script>
 
 
 </body>
