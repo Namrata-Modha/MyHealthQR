@@ -31,15 +31,17 @@
         </div>
 
         <!-- Flash Messages -->
+        @if ($errors->any())
+            <div class="bg-red-500 text-white text-sm px-4 py-2 rounded-md mt-4 text-center shadow-md">
+                {{ $errors->first() }}
+            </div>
+        @endif
         @if(session('success'))
             <div class="bg-green-500 text-white text-sm px-4 py-2 rounded-md mt-4 text-center shadow-md">
                 {{ session('success') }}
             </div>
-        @elseif(session('error'))
-            <div class="bg-red-500 text-white text-sm px-4 py-2 rounded-md mt-4 text-center shadow-md">
-                {{ session('error') }}
-            </div>
         @endif
+
 
         <!-- Centered Login Form -->
         <form method="POST" action="{{ route('login') }}" class="mt-6 space-y-4">
