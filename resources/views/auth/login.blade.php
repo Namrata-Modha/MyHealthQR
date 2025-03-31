@@ -51,7 +51,7 @@
             <div>
                 <label for="email" class="block text-gray-300 text-sm mb-1">Email Address</label>
                 <input type="email" id="email" name="email" required autofocus
-                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-900 focus:ring-2 focus:ring-brandGreen focus:outline-none">
+                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white-900 focus:ring-2 focus:ring-brandGreen focus:outline-none">
             </div>
 
             <!-- ✅ Password Field -->
