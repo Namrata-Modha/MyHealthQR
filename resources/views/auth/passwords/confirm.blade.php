@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('hide_navbar', 'yes')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

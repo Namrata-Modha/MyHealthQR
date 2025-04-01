@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('hide_navbar', 'yes')
 @section('content')
 <div class="container">
     <h2>Reset Password</h2>
