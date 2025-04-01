@@ -26,7 +26,7 @@
         <!-- ✅ Logo & Title -->
         <div class="text-center">
             <img src="{{ asset('images/loginBanner.jpg') }}" alt="MyHealthQR Logo" 
-                class="h-16 w-full object-cover bg-brandGrayDark rounded-t-lg">
+                class="h-16 w-full object-contain bg-brandGrayDark rounded-t-lg">
             <h2 class="text-2xl font-bold text-brandGreen mt-4">Sign in to MyHealthQR</h2>
         </div>
 
