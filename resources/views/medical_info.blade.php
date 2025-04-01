@@ -26,7 +26,7 @@
                                 <input type="text" class="form-control" name="allergies" 
                                        value="{{ old('allergies', $medicalInfo->allergies ?? '') }}">
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="allergies" onclick="toggleVisibility('allergies')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide your allergy details. If visible, they will be displayed when your QR code is scanned."></i>
+                                    <i style="pointer-events: auto;" class="eye-icon fas fa-eye toggle-visibility" data-field="allergies" onclick="toggleVisibility('allergies')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide your allergy details. If visible, they will be displayed when your QR code is scanned."></i>
                                 </span>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                 <input type="text" class="form-control" name="conditions" 
                                        value="{{ old('conditions', $medicalInfo->conditions ?? '') }}">
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="conditions" onclick="toggleVisibility('conditions')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide your chronic conditions. If visible, these conditions will be shown to third parties scanning your QR code."></i>
+                                    <i style="pointer-events: auto;" class="eye-icon fas fa-eye toggle-visibility" data-field="conditions" onclick="toggleVisibility('conditions')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide your chronic conditions. If visible, these conditions will be shown to third parties scanning your QR code."></i>
                                 </span>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                                 <input type="text" class="form-control" name="medications" 
                                        value="{{ old('medications', $medicalInfo->medications ?? '') }}">
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="medications" onclick="toggleVisibility('medications')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide the medications you are taking. If visible, emergency responders can see them."></i>
+                                    <i style="pointer-events: auto;" class="eye-icon fas fa-eye toggle-visibility" data-field="medications" onclick="toggleVisibility('medications')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide the medications you are taking. If visible, emergency responders can see them."></i>
                                 </span>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                 <input type="checkbox" class="form-check-input me-2" id="has_insurance" name="has_insurance" 
                                        {{ old('has_insurance', $hasInsurance) ? 'checked' : '' }}>
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="has_insurance" onclick="toggleVisibility('has_insurance')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide your health insurance status. If visible, responders will know whether you are insured."></i>
+                                    <i style="pointer-events: auto;" class="eye-icon fas fa-eye toggle-visibility" data-field="has_insurance" onclick="toggleVisibility('has_insurance')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide your health insurance status. If visible, responders will know whether you are insured."></i>
                                 </span>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <div class="input-group">
                                 <textarea class="form-control" name="quickhelp_answer_1">{{ old('quickhelp_answer_1', $medicalInfo->quickhelp_answer_1 ?? '') }}</textarea>
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_answer_1" onclick="toggleVisibility('quickhelp_answer_1')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide this emergency instruction. If visible, responders will see it when scanning your QR code."></i>
+                                    <i style="pointer-events: auto;" class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_answer_1" onclick="toggleVisibility('quickhelp_answer_1')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide this emergency instruction. If visible, responders will see it when scanning your QR code."></i>
                                 </span>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <div class="input-group">
                                 <textarea class="form-control" name="quickhelp_answer_2">{{ old('quickhelp_answer_2', $medicalInfo->quickhelp_answer_2 ?? '') }}</textarea>
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_answer_2" onclick="toggleVisibility('quickhelp_answer_2')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide this emergency action. If visible, it will be available to those scanning your QR code."></i>
+                                    <i style="pointer-events: auto;" class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_answer_2" onclick="toggleVisibility('quickhelp_answer_2')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide this emergency action. If visible, it will be available to those scanning your QR code."></i>
                                 </span>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                             <div class="input-group">
                                 <textarea class="form-control" name="quickhelp_answer_3">{{ old('quickhelp_answer_3', $medicalInfo->quickhelp_answer_3 ?? '') }}</textarea>
                                 <span class="input-group-text">
-                                    <i class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_answer_3" onclick="toggleVisibility('quickhelp_answer_3')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide this emergency guidance. If visible, responders will know what to do when scanning."></i>
+                                    <i style="pointer-events: auto;" class="eye-icon fas fa-eye toggle-visibility" data-field="quickhelp_answer_3" onclick="toggleVisibility('quickhelp_answer_3')" data-bs-toggle="tooltip" data-bs-placement="auto" title="Show or hide this emergency guidance. If visible, responders will know what to do when scanning."></i>
                                 </span>
                             </div>
                         </div>
@@ -143,13 +143,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('js/global.js') }}"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var tooltipTriggerList1 = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        var tooltipList1 = tooltipTriggerList1.map(function (tooltipTriggerEl1) {
-            return new bootstrap.Tooltip(tooltipTriggerEl1);
-        });
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     var tooltipTriggerList1 = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    //     var tooltipList1 = tooltipTriggerList1.map(function (tooltipTriggerEl1) {
+    //         return new bootstrap.Tooltip(tooltipTriggerEl1);
+    //     });
+    // });
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip();
     });
 </script>
 @endsection

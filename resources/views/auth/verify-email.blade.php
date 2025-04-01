@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('hide_navbar', 'yes')
 @section('content')
 <div class="container">
     <h2>Email Verification Required</h2>

@@ -21,7 +21,7 @@
         <h3 class="text-center">Your QR Code</h3>
         <div class="text-center">
             {{-- <img src="{{ asset('qr_codes/qr_code_' . auth()->id() . '.svg') }}" alt="Your QR Code" width="250"> --}}
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ urlencode(' https://3aff-205-211-143-203.ngrok-free.app/scan/' . $qrCode->qr_code) }}" alt="Your QR Code">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ urlencode(' https://c5b3-205-211-143-59.ngrok-free.app/scan/' . $qrCode->qr_code) }}" alt="Your QR Code">
             
             <!-- Print Button -->
             <button onclick="printQRCode()" class="btn btn-primary mt-2">

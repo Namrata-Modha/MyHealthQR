@@ -146,7 +146,9 @@
 </head>
 <body>
     @auth
-        @include('layouts.navbar')  <!-- Navbar visible ONLY when user logged in -->
+        @if (trim($__env->yieldContent('hide_navbar')) != 'yes')
+            @include('layouts.navbar') <!-- Include the navbar if not hidden and only visible for logged in user -->
+        @endif
     @endauth
     <div id="app" class="main-content">
         @yield('content')
