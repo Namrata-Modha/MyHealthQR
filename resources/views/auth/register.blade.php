@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Load Tailwind CSS & JavaScript using Vite -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css'])
     @vite(['resources/js/passwordValidation.js'])
 
 </head>
@@ -70,7 +70,7 @@
                         placeholder="Password">    
                     <!-- ✅ Eye Icon -->
                     <button type="button" id="toggle-password"
-                        class="absolute inset-y-0 right-3 flex items-center">
+                        class="absolute inset-y-0 right-3 flex items-center h-10">
                         <i id="eye-icon" class="fa fa-eye-slash text-brandGrayLight hover:text-white transition duration-200"></i>
                     </button>
                 </div>
@@ -88,7 +88,7 @@
                     @error('password_confirmation') <span class="text-red-500 text-s">{{ $message }}</span> @enderror                
                     <!-- ✅ Matching Eye Icon -->
                     <button type="button" id="toggle-confirm-password"
-                        class="absolute inset-y-0 right-3 flex items-center">
+                        class="absolute inset-y-0 right-3 flex items-center h-10">
                         <i id="eye-icon-confirm" class="fa fa-eye-slash text-brandGrayLight hover:text-white transition duration-200"></i>
                     </button>
                 </div>
@@ -153,9 +153,6 @@
             @enderror
         </div>
 
-
-
-
             <!-- ✅ Sign Up Button -->
             <button type="submit" id="signup-btn"
                 class="w-full bg-brandGreen text-white py-3 rounded-lg shadow-md hover:bg-brandGreen-hover transition-transform transform hover:scale-105 duration-300">
@@ -175,7 +172,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script src="{{ asset('js/register.js') }}"></script>
-
 
 </body>
 </html>

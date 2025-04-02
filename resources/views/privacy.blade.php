@@ -42,6 +42,22 @@
                 support@myhealthqr.com
             </a>.
         </p>
+
+        <div class="text-center mt-4">
+            <a href="{{ route('login') }}"
+               class="inline-block font-bold text-base text-brandBlue hover:text-brandBlue-hover underline transition">
+                ← Back to Login
+            </a>
+        </div>
+
     </div>
+
+    <!-- 🔝 Back to Top Button -->
+    <button id="backToTop" 
+        class="fixed bottom-12 right-6 z-6 mb-11 p-3 bg-brandGreen text-white rounded-full shadow-lg hover:bg-brandGreen-hover transition-all opacity-0 invisible">
+        Back to Top ↑
+    </button>
+
+
 </div>
 @endsection

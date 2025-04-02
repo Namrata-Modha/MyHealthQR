@@ -26,10 +26,29 @@
         <!-- ✅ Logo & Title -->
         <div class="text-center">
             <img src="{{ asset('images/loginBanner.jpg') }}" alt="MyHealthQR Logo" 
-                class="h-16 w-full object-cover bg-brandGrayDark rounded-t-lg">
+                class="h-16 w-full object-contain bg-brandGrayDark rounded-t-lg">
             <h2 class="text-2xl font-bold text-brandGreen mt-4">Sign in to MyHealthQR</h2>
         </div>
+        @if(session('success'))
+            <div class="bg-green-500 text-white text-base px-4 py-2 rounded-md text-center shadow-md mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session('status'))
+            <div class="bg-green-500 text-white text-base px-4 py-2 rounded-md mt-4 text-center shadow-md">
+                {{ session('status') }}
+            </div>
+        @endif
 
+        @if ($errors->any())
+            <div class="text-red-500 bg-red-100 p-3 rounded mb-4 mt-4">
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- Login Form -->
         <form method="POST" action="{{ route('login') }}" class="mt-6 space-y-4">
             @csrf
@@ -52,7 +71,7 @@
                     placeholder="Password">
                 <!-- Eye Icon -->
                 <button type="button" id="toggle-password" 
-                    class="absolute top-3/4 right-3 transform -translate-y-1/2 flex items-center">
+                    class="absolute top-3/4 right-3 transform -translate-y-1/2 flex items-center h-10">
                     <i id="eye-icon" class="fa fa-eye-slash text-brandGrayLight hover:text-white transition duration-200"></i>
                 </button>
                 @error('password')

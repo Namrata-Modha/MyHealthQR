@@ -70,7 +70,7 @@
                     class="w-full px-4 py-2 pr-12 bg-brandGrayDark border border-brandBorder rounded-lg text-brandGrayLight focus:ring-2 focus:ring-brandGreen focus:outline-none"
                     placeholder="New Password">
                 <button type="button" id="toggle-password"
-                    class="absolute top-3/4 right-3 transform -translate-y-1/2 flex items-center">
+                    class="absolute top-3/4 right-3 transform -translate-y-1/2 flex items-center h-10">
                     <i id="eye-icon" class="fa fa-eye-slash text-brandGrayLight hover:text-white transition duration-200"></i>
                 </button>
                 @error('password')
@@ -85,7 +85,7 @@
                     class="w-full px-4 py-2 pr-12 bg-brandGrayDark border border-brandBorder rounded-lg text-brandGrayLight focus:ring-2 focus:ring-brandGreen focus:outline-none"
                     placeholder="Confirm Password">
                 <button type="button" id="toggle-confirm-password"
-                    class="absolute top-3/4 right-3 transform -translate-y-1/2 flex items-center">
+                    class="absolute top-3/4 right-3 transform -translate-y-1/2 flex items-center h-10">
                     <i id="eye-icon-confirm" class="fa fa-eye-slash text-brandGrayLight hover:text-white transition duration-200"></i>
                 </button>
                 @error('password_confirmation')

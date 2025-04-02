@@ -41,23 +41,42 @@ $(document).ready(function () {
             pipeda_consent: { required: "You must agree to PIPEDA compliance." }
         },
         errorPlacement: function (error, element) {
-            element.addClass("is-invalid"); // Apply Bootstrap's error class
-
-            // Remove existing error message if already present
-            element.next(".invalid-feedback").remove();
-
-            // Insert error message right after the element
-            element.after('<div class="invalid-feedback">' + error.text() + '</div>');
-        },
+            element.addClass("border-red-500"); // Add red border
+        
+            // Remove any existing error message
+            element.next(".tailwind-error").remove();
+        
+            if (element.attr("type") === "checkbox") {
+                // Insert error message after the parent label
+                error.insertAfter(element.closest("label"));
+            } else {
+                // Insert error message styled with Tailwind
+                element.after('<div class="text-red-500 text-sm mt-1 tailwind-error">' + error.text() + '</div>');
+            }
+        },        
         success: function (label, element) {
-            $(element).removeClass("is-invalid").addClass("is-valid");
-            $(element).next(".invalid-feedback").remove(); // Remove error message when valid
+            $(element).removeClass("border-red-500").addClass("border-green-500");
+            $(element).next(".tailwind-error").remove();
         },
-        submitHandler: function (form, event) {
-            // event.preventDefault(); // Stop direct form submission
-            $('#submit').attr('disabled', 'disabled'); // Disable submit button
+        // submitHandler: function (form, event) {
+        //     // event.preventDefault(); // Stop direct form submission
+        //     $('#submit').attr('disabled', 'disabled'); // Disable submit button
+        //     form.submit();
+        // }
+
+        submitHandler: function(form, event) {
+            if (!$("#signupForm").valid()) {
+                console.log("❌ Form Validation Failed!");
+                return;
+            }
+            console.log("✅ Validation Passed - Submitting...");
+            // Disable the submit button by targeting it based on its type
+            $(form).find('button[type="submit"]').prop('disabled', true)
+                  .addClass('opacity-50 cursor-not-allowed');
             form.submit();
         }
+        
+
     });
 
     // Guardian Consent Logic
