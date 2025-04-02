@@ -50,35 +50,37 @@
             <!-- ✅ Navigation Links (Hidden on Mobile) -->
             <nav id="nav-menu" class="hidden md:flex md:space-x-4 items-center">
                 @auth
-                    <!-- ✅ Authenticated User Tabs -->
-                    @php
-                        $tabs = [
-                            ['route' => 'dashboard', 'label' => 'Dashboard'],
-                            ['route' => 'user.profile', 'label' => 'Personal Info'],
-                            ['route' => 'medical.info', 'label' => 'Medical Info'],
-                            ['route' => 'logs', 'label' => 'Logs']
-                        ];
-                    @endphp
+                    @if (trim($__env->yieldContent('hide_navbar')) != 'yes')
 
-                    @foreach ($tabs as $tab)
-                        <a href="{{ route($tab['route']) }}"
-                        class="px-6 py-2 rounded-full text-sm md:text-base font-semibold transition
-                            {{ request()->routeIs($tab['route']) 
-                                    ? 'bg-brandGreen text-white shadow-md' 
-                                    : 'text-brandBlue hover:bg-brandBlue/10 hover:text-brandBlue-hover' }}">
-                            {{ $tab['label'] }}
-                        </a>
-                    @endforeach
+                        <!-- ✅ Authenticated User Tabs -->
+                        @php
+                            $tabs = [
+                                ['route' => 'dashboard', 'label' => 'Dashboard'],
+                                ['route' => 'user.profile', 'label' => 'Personal Info'],
+                                ['route' => 'medical.info', 'label' => 'Medical Info'],
+                                ['route' => 'logs', 'label' => 'Logs']
+                            ];
+                        @endphp
 
-                    <!-- ✅ Logout Button -->
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit"
-                            class="ml-3 px-4 py-2 rounded-full text-sm md:text-base font-semibold text-red-500 hover:text-white hover:bg-red-600 transition">
-                            Logout
-                        </button>
-                    </form>
+                        @foreach ($tabs as $tab)
+                            <a href="{{ route($tab['route']) }}"
+                            class="px-6 py-2 rounded-full text-sm md:text-base font-semibold transition
+                                {{ request()->routeIs($tab['route']) 
+                                        ? 'bg-brandGreen text-white shadow-md' 
+                                        : 'text-brandBlue hover:bg-brandBlue/10 hover:text-brandBlue-hover' }}">
+                                {{ $tab['label'] }}
+                            </a>
+                        @endforeach
 
+                        <!-- ✅ Logout Button -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                class="ml-3 px-4 py-2 rounded-full text-sm md:text-base font-semibold text-red-500 hover:text-white hover:bg-red-600 transition">
+                                Logout
+                            </button>
+                        </form>
+                    @endif  
                 @else
                     @if (Request::is('/'))
                         <!-- ✅ Guest on Welcome Page -->
@@ -94,21 +96,22 @@
         <!-- ✅ Mobile Navigation (Dropdown) -->
         <div id="mobile-menu" class="md:hidden hidden bg-brandGrayMedium text-white px-6 py-4">
             @auth
-                @foreach ($tabs as $tab)
-                    <a href="{{ route($tab['route']) }}"
-                    class="block py-2 text-sm font-semibold {{ request()->routeIs($tab['route']) ? 'text-brandGreen' : 'text-white hover:text-brandBlue-hover' }}">
-                        {{ $tab['label'] }}
-                    </a>
-                @endforeach
+                @if (trim($__env->yieldContent('hide_navbar')) != 'yes')
+                    @foreach ($tabs as $tab)
+                        <a href="{{ route($tab['route']) }}"
+                        class="block py-2 text-sm font-semibold {{ request()->routeIs($tab['route']) ? 'text-brandGreen' : 'text-white hover:text-brandBlue-hover' }}">
+                            {{ $tab['label'] }}
+                        </a>
+                    @endforeach
 
-                <!-- ✅ Mobile Logout Button -->
-                <form method="POST" action="{{ route('logout') }}" class="mt-2">
-                    @csrf
-                    <button type="submit" class="w-full text-left py-2 text-red-500 hover:text-white hover:bg-red-600 transition">
-                        Logout
-                    </button>
-                </form>
-
+                    <!-- ✅ Mobile Logout Button -->
+                    <form method="POST" action="{{ route('logout') }}" class="mt-2">
+                        @csrf
+                        <button type="submit" class="w-full text-left py-2 text-red-500 hover:text-white hover:bg-red-600 transition">
+                            Logout
+                        </button>
+                    </form>
+                @endif
             @else
                 @if (Request::is('/'))
                     <a href="{{ route('login') }}" class="block py-2 text-white hover:text-brandBlue-hover">Login</a>

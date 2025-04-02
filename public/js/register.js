@@ -58,11 +58,25 @@ $(document).ready(function () {
             $(element).removeClass("border-red-500").addClass("border-green-500");
             $(element).next(".tailwind-error").remove();
         },
-        submitHandler: function (form, event) {
-            // event.preventDefault(); // Stop direct form submission
-            $('#submit').attr('disabled', 'disabled'); // Disable submit button
+        // submitHandler: function (form, event) {
+        //     // event.preventDefault(); // Stop direct form submission
+        //     $('#submit').attr('disabled', 'disabled'); // Disable submit button
+        //     form.submit();
+        // }
+
+        submitHandler: function(form, event) {
+            if (!$("#signupForm").valid()) {
+                console.log("❌ Form Validation Failed!");
+                return;
+            }
+            console.log("✅ Validation Passed - Submitting...");
+            // Disable the submit button by targeting it based on its type
+            $(form).find('button[type="submit"]').prop('disabled', true)
+                  .addClass('opacity-50 cursor-not-allowed');
             form.submit();
         }
+        
+
     });
 
     // Guardian Consent Logic

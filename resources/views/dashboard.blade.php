@@ -101,6 +101,9 @@
         border-radius: 10px;
     }
 </style>
+
+
+
 @endsection
 
 @section('scripts')
