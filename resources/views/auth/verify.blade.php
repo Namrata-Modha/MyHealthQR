@@ -1,28 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+<div class="min-h-screen flex flex-col items-center justify-center">
+    
+    <!-- ✅ Centered Container -->
+    <div class="w-full max-w-md bg-brandGrayMedium p-8 shadow-lg rounded-lg border border-brandGreen text-center">
+        
+        <!-- ✅ Logo -->
+        <img src="{{ asset('images/logo.png') }}" alt="MyHealthQR Logo" 
+             class="w-full h-16 object-cover bg-brandGrayLight rounded-t-lg">
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
+        <!-- ✅ Header -->
+        <h2 class="text-2xl font-bold text-brandGreen mt-4">Verify Your Email Address</h2>
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
-                </div>
+        <!-- ✅ Success Message for Resent Email -->
+        @if (session('resent'))
+            <div class="bg-green-500 text-white text-sm px-4 py-2 rounded-md mt-4 shadow-md">
+                ✅ A new verification link has been sent to your email.
             </div>
-        </div>
+        @endif
+
+        <!-- ✅ Instructions -->
+        <p class="mt-4 text-sm text-brandGrayLight">
+            Please check your email for a verification link before proceeding.
+        </p>
+        <p class="text-sm text-brandGrayLight mt-2">
+            If you did not receive the email, click below to request another.
+        </p>
+
+        <!-- ✅ Resend Verification Form -->
+        <form method="POST" action="{{ route('verification.resend') }}" class="mt-6 flex flex-col items-center">
+            @csrf
+            <button type="submit"
+                class="w-full bg-brandGreen text-white py-3 rounded-lg shadow-md hover:bg-brandGreen-hover transition-transform transform hover:scale-105 duration-300">
+                Resend Verification Email
+            </button>
+        </form>
     </div>
 </div>
 @endsection

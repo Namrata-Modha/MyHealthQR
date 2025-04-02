@@ -4,97 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MyHealthQR</title>
-    
+
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 
     <!-- Load Tailwind CSS & JavaScript using Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite(['resources/js/passwordValidation.js'])
-
-
+    @vite(['resources/js/rememberMe.js'])
 </head>
-<body class="bg-gray-900 text-gray-100 h-screen flex items-center justify-center relative">  <!-- Full-page center -->
+<body class="bg-brandGrayDark text-brandGrayLight h-screen flex items-center justify-center relative">
+
     <!-- Background Image -->
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
          style="background-image: url('{{ asset('images/hero-bg.jpg') }}');">
-        <div class="absolute inset-0 bg-gray-900/70"></div>  <!-- Dark overlay for readability -->
+        <div class="absolute inset-0 bg-brandGrayDark/70"></div>  <!-- Dark overlay -->
     </div>
+
     <!-- ✅ Fully Centered Login Container -->
-    <div class="w-full max-w-sm p-8 bg-gray-800 bg-opacity-90 shadow-lg rounded-lg relative z-10  border border-brandGreen">
+    <div class="w-full max-w-sm p-8 bg-brandGrayDark bg-opacity-95 shadow-lg rounded-lg relative z-10 border border-brandGreen">
         <!-- ✅ Logo & Title -->
         <div class="text-center">
             <img src="{{ asset('images/loginBanner.jpg') }}" alt="MyHealthQR Logo" 
-             class="h-16 w-full object-cover bg-gray-700 rounded-t-lg">
+                class="h-16 w-full object-contain bg-brandGrayDark rounded-t-lg">
             <h2 class="text-2xl font-bold text-brandGreen mt-4">Sign in to MyHealthQR</h2>
         </div>
-
-        <!-- Flash Messages -->
         @if(session('success'))
-            <div class="bg-green-500 text-white text-sm px-4 py-2 rounded-md mt-4 text-center shadow-md">
+            <div class="bg-green-500 text-white text-base px-4 py-2 rounded-md text-center shadow-md mb-4">
                 {{ session('success') }}
             </div>
-        @elseif(session('error'))
-            <div class="bg-red-500 text-white text-sm px-4 py-2 rounded-md mt-4 text-center shadow-md">
-                {{ session('error') }}
+        @endif
+        @if(session('status'))
+            <div class="bg-green-500 text-white text-base px-4 py-2 rounded-md mt-4 text-center shadow-md">
+                {{ session('status') }}
             </div>
         @endif
 
-
-        <!-- Centered Login Form -->
+        @if ($errors->any())
+            <div class="text-red-500 bg-red-100 p-3 rounded mb-4 mt-4">
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <!-- Login Form -->
         <form method="POST" action="{{ route('login') }}" class="mt-6 space-y-4">
             @csrf
-            
-            <!-- Email Field -->
+
+            <!-- Email -->
             <div>
-                <label for="email" class="block text-gray-300 text-sm mb-1">Email Address</label>
-                <input type="email" id="email" name="email" required autofocus
-                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white-900 focus:ring-2 focus:ring-brandGreen focus:outline-none">
+                <label for="email" class="block text-brandGrayLight text-base mb-1">Email Address</label>
+                <input type="email" id="email" name="email"  autofocus
+                    class="w-full px-4 py-2 bg-brandGrayDark border border-brandBorder rounded-lg text-brandGrayLight focus:ring-2 focus:ring-brandGreen focus:outline-none">
+                @error('email')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
-            <!-- ✅ Password Field -->
+            <!-- Password -->
             <div class="relative">
-                <label for="password" class="block text-gray-300 text-sm mb-1">Password</label>
+                <label for="password" class="block text-brandGrayLight text-base mb-1">Password</label>
                 <input type="password" name="password" id="password"
-                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:ring-2 focus:ring-brandGreen focus:outline-none pr-10"
+                    class="w-full px-4 py-2 bg-brandGrayDark border border-brandBorder rounded-lg text-brandGrayLight focus:ring-2 focus:ring-brandGreen focus:outline-none pr-10"
                     placeholder="Password">
-                
-                <!-- ✅ Eye Icon (Using FontAwesome) -->
+                <!-- Eye Icon -->
                 <button type="button" id="toggle-password" 
-                    class="absolute top-3/4 right-3 transform -translate-y-1/2 flex items-center">
-                    <i id="eye-icon" class="fa fa-eye-slash text-gray-400 hover:text-white transition duration-200"></i>
+                    class="absolute top-3/4 right-3 transform -translate-y-1/2 flex items-center h-10">
+                    <i id="eye-icon" class="fa fa-eye-slash text-brandGrayLight hover:text-white transition duration-200"></i>
                 </button>
+                @error('password')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
-
-
-
-
-            <!-- ✅ Remember Me & Forgot Password -->
-            <div class="flex items-center justify-between text-sm">
+            <!-- Remember Me + Forgot Password -->
+            <div class="flex items-center justify-between text-base">
                 <label class="inline-flex items-center">
                     <input type="checkbox" name="remember" class="text-brandGreen">
-                    <span class="ml-2 text-gray-300">Remember me</span>
+                    <span class="ml-2 text-brandGrayLight">Remember me</span>
                 </label>
                 <a href="{{ route('password.request') }}" class="text-brandBlue hover:underline">
                     Forgot password?
                 </a>
             </div>
 
-            <!-- Centered Login Button -->
+            <!-- Login Button -->
             <button type="submit"
-                class="w-full bg-brandGreen text-white py-3 rounded-lg shadow-md hover:bg-green-700 transition-transform transform hover:scale-105 duration-300">
+                class="w-full bg-brandGreen text-white py-3 rounded-lg shadow-md hover:bg-brandGreen-hover transition-transform transform hover:scale-105 duration-300">
                 Sign In
             </button>
         </form>
 
         <!-- Register Link -->
-        <p class="text-gray-400 text-sm text-center mt-6">
+        <p class="text-brandGrayLight text-base text-center mt-6">
             Don't have an account? 
-            <a href="{{ route('register') }}" class="text-brandBlue hover:underline">Sign up</a>
+            <a href="{{ route('register') }}" class="text-brandBlue hover:underline font-bold">Sign up</a>
         </p>
     </div>
-    @vite(['resources/js/rememberMe.js'])
+    <!-- ✅ jQuery and Validation Scripts (Optional for future validation) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
 </body>
 </html>
