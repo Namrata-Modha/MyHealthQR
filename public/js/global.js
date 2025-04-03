@@ -1,14 +1,11 @@
 $(document).ready(function () {
     
     let privacySettings = loadPrivacySettings();
-    console.log("🔄 Loaded Privacy Settings on Page Load:", privacySettings);
-
-    // 🔹 Ensure visibility settings are reapplied on every page load
+    // Ensure visibility settings are reapplied on every page load
     applyVisibilitySettings();
 
-    // 🔹 Reapply visibility settings if triggered after save
+    // Reapply visibility settings if triggered after save
     if (sessionStorage.getItem("refreshVisibility") === "true") {
-        console.log("🔄 Refreshing Visibility Settings After Save...");
         applyVisibilitySettings();
         sessionStorage.removeItem("refreshVisibility"); // Reset after execution
     }
@@ -17,14 +14,12 @@ $(document).ready(function () {
     $(".toggle-visibility").each(function () {
         let field = $(this).data("field");
         let visibilityState = privacySettings[field] || "visible"; // Default to visible
-        console.log(`Setting initial icon state for ${field}: ${visibilityState}`);
         setInitialIconState(field, visibilityState);
     });
 
     // Click event for toggling visibility
     $(".toggle-visibility").on("click", function () {
         let field = $(this).data("field");
-        console.log(`Toggling visibility for ${field}`);
         toggleVisibility(field);
     });
 });
@@ -33,15 +28,13 @@ $(document).ready(function () {
  * Function to apply saved visibility settings on every load
  */
 function applyVisibilitySettings() {
-    console.log("✅ Applying Saved Visibility Settings...");
-
+    //  Load privacy settings from the hidden input field
     let privacySettings = loadPrivacySettings();
 
     $(".toggle-visibility").each(function () {
         let field = $(this).data("field");
         let visibilityState = privacySettings[field] || "visible"; // Default to visible
 
-        console.log(`Applying state for ${field}: ${visibilityState}`);
         setInitialIconState(field, visibilityState);
     });
 }
@@ -64,7 +57,6 @@ function loadPrivacySettings() {
         settings = {};
     }
 
-    console.log("Loaded Settings from Hidden Input:", settings);
     return settings;
 }
 
@@ -77,9 +69,7 @@ function loadPrivacySettings() {
 function setInitialIconState(field, visibilityState) {
     let iconElement = $(`.toggle-visibility[data-field="${field}"]`);
     
-    console.log(`Setting icon for ${field} - Visibility State: ${visibilityState}`);
-
-    // 🔥 FIX: Remove BOTH classes first to ensure no incorrect classes remain
+    // FIX: Remove BOTH classes first to ensure no incorrect classes remain
     iconElement.removeClass("fa-eye fa-eye-slash");
 
     if (visibilityState === "invisible") {
@@ -88,7 +78,6 @@ function setInitialIconState(field, visibilityState) {
         iconElement.addClass("fa-eye");
     }
 
-    console.log(`Updated icon class for ${field}: ${iconElement.attr("class")}`);
 }
 
 
@@ -104,12 +93,8 @@ function setInitialIconState(field, visibilityState) {
 function toggleVisibility(field) {
     let privacySettings = JSON.parse($("#privacy_settings").val() || "{}");
 
-    console.log("Privacy Settings before toggle:", privacySettings);
-
     let currentState = privacySettings[field] || "visible";
     let newState = currentState === "visible" ? "invisible" : "visible";
-
-    console.log(`Toggling ${field} | Current State: ${currentState} -> New State: ${newState}`);
 
     privacySettings[field] = newState;
 
@@ -131,13 +116,8 @@ function toggleVisibility(field) {
 function updateHiddenInput(updatedSettings) {
     let currentSettings = JSON.parse($("#privacy_settings").val() || "{}");
 
-    console.log("Before Update - Current Settings:", currentSettings);
-    console.log("Incoming Updates (should only contain the toggled field):", updatedSettings);
-
     //  Only update the changed field, preserving others
     Object.assign(currentSettings, updatedSettings);
-
-    console.log("After Update - Final Settings (should match expected values):", currentSettings);
 
     $("#privacy_settings").val(JSON.stringify(currentSettings)).trigger("change");
 }

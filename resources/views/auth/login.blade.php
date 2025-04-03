@@ -21,9 +21,9 @@
         <div class="absolute inset-0 bg-brandGrayDark/70"></div>  <!-- Dark overlay -->
     </div>
 
-    <!-- ✅ Fully Centered Login Container -->
+    <!--  Fully Centered Login Container -->
     <div class="w-full max-w-sm p-8 bg-brandGrayDark bg-opacity-95 shadow-lg rounded-lg relative z-10 border border-brandGreen">
-        <!-- ✅ Logo & Title -->
+        <!--  Logo & Title -->
         <div class="text-center">
             <img src="{{ asset('images/loginBanner.jpg') }}" alt="MyHealthQR Logo" 
                 class="h-16 w-full object-contain bg-brandGrayDark rounded-t-lg">
@@ -103,7 +103,7 @@
             <a href="{{ route('register') }}" class="text-brandBlue hover:underline font-bold">Sign up</a>
         </p>
     </div>
-    <!-- ✅ jQuery and Validation Scripts (Optional for future validation) -->
+    <!--  jQuery and Validation Scripts (Optional for future validation) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 

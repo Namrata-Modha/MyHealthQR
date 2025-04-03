@@ -21,7 +21,14 @@ class AuthController extends Controller {
         return view('auth.register');
     }
 
-    // Register User
+    /**
+     * Handles the user registration process.
+     *
+     * This method is responsible for validating user input, creating a new user
+     * in the system, and sending an email verification to the registered user.
+     *
+     * @return void
+     */
     public function register(Request $request) {
         
         $validator = Validator::make($request->all(), [
@@ -114,12 +121,25 @@ class AuthController extends Controller {
     }
     
 
-    // Show Login Page
+    /**
+     * Displays the login page to the user.
+     * 
+     * This method is responsible for rendering the login view,
+     * allowing users to input their credentials and access their accounts.
+     *
+     * @return \Illuminate\View\View
+     */
     public function showLoginForm() {
         return view('auth.login');
     }
 
-    // Handle Login
+    /**
+     * Handles the login functionality for the application.
+     * This method is responsible for authenticating users
+     * and managing their login sessions.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -148,7 +168,11 @@ class AuthController extends Controller {
     }
 
 
-    // Handle Logout
+    /**
+     * Handles the user logout process.
+     * This method is responsible for terminating the user's session
+     * and performing any necessary cleanup actions.
+     */
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();

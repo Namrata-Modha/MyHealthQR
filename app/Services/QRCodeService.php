@@ -11,7 +11,13 @@ use Illuminate\Support\Str;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 
 class QRCodeService
-{
+{   
+    /**
+     * Generate a QR code and store it in the public directory.
+     *
+     * @param int $userId The user ID for whom the QR code is generated.
+     * @return \App\Models\QRCodes The created QR code record.
+     */
     public function generateAndStoreQRCode($userId)
     {
         $uniqueCode = Str::random(40); // Generate a 40-character unique code

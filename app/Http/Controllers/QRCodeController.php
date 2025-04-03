@@ -12,6 +12,12 @@ use Carbon\Carbon;
 
 class QRCodeController extends Controller
 {
+    /**
+     * Show the QR code details for third-party access.
+     *
+     * @param string $qr_code_key The QR code key to look up.
+     * @return \Illuminate\View\View
+     */
     public function show($qr_code_key)
     {
         // Find the QR code in the database

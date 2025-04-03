@@ -7,7 +7,7 @@
     'placeholder' => '', 
     'required' => false, 
     'autocomplete' => '', 
-    'autofocus' => false  // ✅ Add this line
+    'autofocus' => false  //  Add this line
 ]) -->
 
 
@@ -82,7 +82,7 @@
            
 
         @if($showEyeIcon && $type === 'password')
-            <!-- ✅ Eye Icon -->
+            <!--  Eye Icon -->
             <button type="button" class="absolute inset-y-0 right-3 flex items-center" onclick="togglePasswordVisibility('{{ $id ?? $name }}')">
                 <i class="fa fa-eye-slash text-brandGrayLight hover:text-white transition duration-200" id="{{ $id ?? $name }}-eye-icon"></i>
             </button>
@@ -94,7 +94,7 @@
     @enderror
 </div>
 
-<!-- ✅ Eye Icon Script -->
+<!--  Eye Icon Script -->
 @once
 <script>
 function togglePasswordVisibility(id) {

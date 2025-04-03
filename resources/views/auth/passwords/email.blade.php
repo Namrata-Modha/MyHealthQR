@@ -19,27 +19,27 @@
         <div class="absolute inset-0 bg-brandGrayDark/70"></div>
     </div>
 
-    <!-- ✅ Forgot Password Container -->
+    <!--  Forgot Password Container -->
     <div class="w-full max-w-md p-6 bg-brandGrayDark bg-opacity-95 shadow-lg rounded-lg border border-brandGreen relative z-10">
-        <!-- ✅ Logo & Title -->
+        <!--  Logo & Title -->
         <div class="text-center">
             <img src="{{ asset('images/loginBanner.jpg') }}" alt="MyHealthQR Logo" 
                 class="h-16 w-full object-contain bg-brandDarkGray rounded-t-lg">
             <h2 class="text-xl font-bold text-brandGreen mt-4">Reset Your Password</h2>
         </div>
 
-        <!-- ✅ Flash Message -->
+        <!--  Flash Message -->
         @if (session('status'))
             <div class="mt-4 p-3 text-sm text-green-500 bg-green-100 border border-green-300 rounded">
                 {{ session('status') }}
             </div>
         @endif
 
-        <!-- ✅ Password Reset Form -->
+        <!--  Password Reset Form -->
         <form method="POST" action="{{ route('password.email') }}" class="mt-6 space-y-4">
             @csrf
 
-            <!-- ✅ Email Input -->
+            <!--  Email Input -->
             <div>
                 <label for="email" class="block text-base text-brandGrayLight mb-1">Email Address</label>
                 <input id="email" type="email"
@@ -50,13 +50,13 @@
                 @enderror
             </div>
 
-            <!-- ✅ Submit Button -->
+            <!--  Submit Button -->
             <button type="submit"
                 class="w-full bg-brandGreen text-white py-3 rounded-lg shadow-md hover:bg-brandGreen-hover transition-transform transform hover:scale-105 duration-300">
                 Send Password Reset Link
             </button>
 
-            <!-- ✅ Back to Login -->
+            <!--  Back to Login -->
             <div class="text-center mt-4">
                 <a href="{{ route('login') }}"
                    class="inline-block text-base text-brandBlue hover:text-brandBlue-hover underline transition">

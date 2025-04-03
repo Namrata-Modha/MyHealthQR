@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const eyeIconPassword = document.getElementById("eye-icon");
     const eyeIconConfirmPassword = document.getElementById("eye-icon-confirm");
 
-    // ✅ Function to toggle password visibility
+    // Function to toggle password visibility
     function toggleVisibility(inputField, eyeIcon) {
         if (inputField.type === "password") {
             inputField.type = "text";
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ✅ Event listeners for toggling password visibility
+    // Event listeners for toggling password visibility
     if (togglePassword) {
         togglePassword.addEventListener("click", function () {
             toggleVisibility(passwordField, eyeIconPassword);
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ✅ Function to check password strength (Using zxcvbn)
+    // Function to check password strength (Using zxcvbn)
     if (passwordField) {
         passwordField.addEventListener("input", function () {
             if (!passwordField.value) {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ✅ Function to check if passwords match
+    // Function to check if passwords match
     function checkPasswordMatch() {
         if (confirmPasswordField.value !== "" && confirmPasswordField.value !== passwordField.value) {
             passwordMatchMessage.classList.remove("hidden");
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ✅ Listen for input changes
+    // Listen for input changes
     if (passwordField && confirmPasswordField) {
         passwordField.addEventListener("input", checkPasswordMatch);
         confirmPasswordField.addEventListener("input", checkPasswordMatch);

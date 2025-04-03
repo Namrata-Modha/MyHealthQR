@@ -80,15 +80,6 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-// TESTING ONLY
-Route::get('/test', function () {
-    return view('test');
-});
-
-Route::get('/test2', function () {
-    return view('test2'); // Ensure the Blade file name matches
-});
-
 
 //route that captures the QR code key and directs the user to the correct page.
 Route::get('/scan/{qr_code_key}', [QRCodeController::class, 'show'])->name('qr.view');

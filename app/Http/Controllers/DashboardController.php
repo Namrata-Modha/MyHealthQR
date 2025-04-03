@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
+    /**
+     * Display the dashboard view.
+     *
+     * @return \Illuminate\View\View The dashboard view.
+     */
     public function show()
     {
         $user = Auth::user();

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class MedicalInfoController extends Controller
 {
+    /**
+     * Display the medical information view.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $user = Auth::user();
@@ -60,7 +65,12 @@ class MedicalInfoController extends Controller
 
         return view('medical_info', compact('medicalInfo', 'hasInsurance', 'privacySettings', 'healthQrEnabled'));
     }
-
+    /**
+     * Update the medical information.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request)
     {
         $user = Auth::user();

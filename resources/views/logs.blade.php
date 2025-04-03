@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<!-- ✅ Custom Pagination Styling -->
+<!--  Custom Pagination Styling -->
 <style>
     /* Make the pagination layout horizontal and styled */
     .pagination {

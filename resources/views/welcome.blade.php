@@ -1,7 +1,7 @@
 @extends('layouts.app') 
 
 @section('content')
-    <!-- ✅ Hero Section -->
+    <!--  Hero Section -->
     <section class="relative text-center mb-0 py-32 bg-brandGrayDark">
         <!-- Background Image -->
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
@@ -38,7 +38,7 @@
         </div>
     </section>
 
-    <!-- ✅ Features Section -->
+    <!--  Features Section -->
     <section class="container mt-2 mx-auto py-6 px-6 mb-0">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-6">
             <div class="p-6 bg-brandGrayMedium border border-brandBorder shadow-lg rounded-lg text-center">

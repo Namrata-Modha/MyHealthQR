@@ -23,10 +23,10 @@ export default {
                     DEFAULT: "#4D8DD8",  // Standard blue for links
                     hover: "#1E40AF",  // Darker blue on hover
                 },
-                brandGrayLight: "#D1D5DB", // ✅ Light gray for text
-                brandGrayMedium: "#111827", // ✅ #6B7280 Medium gray for subtext
-                brandGrayDark: "#1F2937",  // ✅ #1F2937 Dark gray for better contrast
-                brandBorder: "#4B5563",  // ✅ Improved border color for inputs/buttons
+                brandGrayLight: "#D1D5DB", //  Light gray for text
+                brandGrayMedium: "#111827", //  #6B7280 Medium gray for subtext
+                brandGrayDark: "#1F2937",  //  #1F2937 Dark gray for better contrast
+                brandBorder: "#4B5563",  //  Improved border color for inputs/buttons
                 
                 // Dark Mode Colors (default)
                 dark: {

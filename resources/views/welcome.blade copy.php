@@ -13,13 +13,13 @@
     <!-- Navigation Bar -->
     <header class="bg-brandGrayDark text-white shadow-md">
     <div class="container mx-auto px-6 py-2 flex justify-between items-center w-full">
-        <!-- ✅ Logo Moved to the Left -->
+        <!--  Logo Moved to the Left -->
         <div class="flex items-center space-x-3 mr-auto pr-auto">
             <img src="{{ asset('images/logo.png') }}" alt="MyHealthQR Logo" class="h-12">
             <span class="text-lg font-bold text-brandGreen">MyHealthQR</span>
         </div>
 
-        <!-- ✅ Navigation Moved to the Right -->
+        <!--  Navigation Moved to the Right -->
         <nav class="flex space-x-4">
             <a href="{{ route('login') }}" class="text-base sm:text-lg text-brandBlue hover:text-brandBlue-hover px-3">Login</a>
             <a href="{{ route('register') }}" class="bg-brandGreen text-white px-5 py-2 rounded-lg hover:bg-brandGreen-hover">

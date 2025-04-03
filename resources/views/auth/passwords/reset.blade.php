@@ -19,9 +19,9 @@
         <div class="absolute inset-0 bg-brandGrayDark/70"></div>
     </div>
 
-    <!-- ✅ Reset Container -->
+    <!--  Reset Container -->
     <div class="w-full max-w-sm p-6 bg-brandGrayDark bg-opacity-95 shadow-lg rounded-lg relative z-10 border border-brandGreen">
-        <!-- ✅ Logo & Title -->
+        <!--  Logo & Title -->
         <div class="text-center">
             <img src="{{ asset('images/loginBanner.jpg') }}" alt="MyHealthQR Logo"
                  class="h-16 w-full object-contain bg-brandDarkGray rounded-t-lg">
@@ -48,7 +48,7 @@
             </div>
         @endif
 
-        <!-- ✅ Reset Form -->
+        <!--  Reset Form -->
         <form id="resetPasswordForm" method="POST" action="{{ route('password.update') }}" class="space-y-4 mt-6">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    <!-- ✅ JS Includes -->
+    <!--  JS Includes -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     @vite(['resources/js/passwordValidation.js'])

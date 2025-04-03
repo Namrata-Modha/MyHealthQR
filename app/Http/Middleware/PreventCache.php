@@ -5,6 +5,13 @@ use Closure;
 
 class PreventCache
 {
+    /**
+     * Handle an incoming request and prevent caching.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
     public function handle($request, Closure $next)
     {
         $response = $next($request);

@@ -15,15 +15,15 @@
 </head>
 <body class="bg-brandGrayDark text-brandGrayLight min-h-screen flex flex-col items-center justify-between relative">
 
-    <!-- ✅ Background Image -->>
+    <!--  Background Image -->>
     <div class="absolute top-0 left-0 w-full min-h-full bg-cover bg-center bg-no-repeat" 
         style="background-image: url('{{ asset('images/hero-bg.jpg') }}');">
         <div class="absolute inset-0 bg-brandGrayDark/70"></div>  <!-- Dark overlay for readability -->
     </div>
 
-    <!-- ✅ Fully Centered Signup Container -->
+    <!--  Fully Centered Signup Container -->
     <div class="w-full max-w-md p-6 bg-brandGrayDark bg-opacity-95 shadow-lg rounded-lg relative z-10 mt-6 mb-6 border border-brandGreen">   
-         <!-- ✅ Logo as a Banner -->
+         <!--  Logo as a Banner -->
         <img src="{{ asset('images/logo.png') }}" alt="MyHealthQR Logo" 
              class="w-full h-20 object-contain bg-brandDarkGray rounded-t-lg">
 
@@ -61,14 +61,14 @@
                 @error('email') <span class="text-red-500 text-s">{{ $message }}</span> @enderror
             </div>
             
-            <!-- ✅ Password Field with Eye Icon -->
+            <!--  Password Field with Eye Icon -->
             <div class="relative">
                 <label for="password" class="block text-brandGrayLight text-base mb-1">Password</label>
                 <div class="relative">
                     <input type="password" name="password" id="password"
                         class="w-full h-10 px-4 pr-12 bg-brandGrayDark border border-brandBorder rounded-lg text-brandGrayLight focus:ring-2 focus:ring-brandGreen focus:outline-none"
                         placeholder="Password">    
-                    <!-- ✅ Eye Icon -->
+                    <!--  Eye Icon -->
                     <button type="button" id="toggle-password"
                         class="absolute inset-y-0 right-3 flex items-center h-10">
                         <i id="eye-icon" class="fa fa-eye-slash text-brandGrayLight hover:text-white transition duration-200"></i>
@@ -78,7 +78,7 @@
                 @error('password') <span class="text-red-500 text-s">{{ $message }}</span> @enderror
             </div>
  
-            <!-- ✅ Confirm Password Field -->
+            <!--  Confirm Password Field -->
             <div class="relative">
                 <label for="password_confirmation" class="block text-brandGrayLight text-base mb-1">Confirm Password</label>
                 <div class="relative">
@@ -86,19 +86,19 @@
                         class="w-full h-10 px-4 pr-12 bg-brandGrayDark border border-brandBorder rounded-lg text-brandGrayLight focus:ring-2 focus:ring-brandGreen focus:outline-none"
                         placeholder="Confirm Password">
                     @error('password_confirmation') <span class="text-red-500 text-s">{{ $message }}</span> @enderror                
-                    <!-- ✅ Matching Eye Icon -->
+                    <!--  Matching Eye Icon -->
                     <button type="button" id="toggle-confirm-password"
                         class="absolute inset-y-0 right-3 flex items-center h-10">
                         <i id="eye-icon-confirm" class="fa fa-eye-slash text-brandGrayLight hover:text-white transition duration-200"></i>
                     </button>
                 </div>
-                <!-- ✅ Password Mismatch Message (Real-Time) -->
+                <!--  Password Mismatch Message (Real-Time) -->
                 <p id="password-match-message" class="text-base mt-1 text-red-500 hidden">
                         Passwords do not match.
                 </p>
             </div>
 
-            <!-- ✅ Date of Birth -->
+            <!--  Date of Birth -->
             <div>
                 <label for="date_of_birth" class="block text-brandGrayLight text-base mb-1">Date of Birth</label>
                 <input type="date" name="date_of_birth" id="date_of_birth" max="{{ date('Y-m-d') }}"
@@ -107,7 +107,7 @@
                 @error('date_of_birth') <span class="text-red-500 text-s">{{ $message }}</span> @enderror
             </div>
 
-            <!-- ✅ Guardian Consent Checkbox (Only Shows If Under 18) -->
+            <!--  Guardian Consent Checkbox (Only Shows If Under 18) -->
             <div id="guardianConsentField" class="{{ old('date_of_birth') && (!$errors->has('guardian_consent') ? 'hidden' : '') }}">
                 <label class="flex items-center space-x-2">
                     <input type="checkbox" name="guardian_consent" id="guardian_consent" class="text-brandGreen" {{ old('guardian_consent') ? 'checked' : '' }}>
@@ -119,7 +119,7 @@
             </div>
 
 
-            <!-- ✅ Consent Checkboxes -->
+            <!--  Consent Checkboxes -->
             <div class="mt-4">
                 <label for="security_agreement_signed" class="inline-flex items-center space-x-2">
                 <input type="checkbox" name="security_agreement_signed" id="security_agreement_signed" class="text-brandGreen"
@@ -136,7 +136,7 @@
             </div>
 
             <div class="flex flex-col">
-            <!-- ✅ Checkbox and Label -->
+            <!--  Checkbox and Label -->
             <label class="flex items-center space-x-2">
                 <input type="checkbox" name="pipeda_consent" id="pipeda_consent" class="text-brandGreen" value="1"
                     {{ old('pipeda_consent') ? 'checked' : '' }}>
@@ -147,13 +147,13 @@
                 </span>
             </label>
 
-            <!-- ✅ Error message appears below text, not beside -->
+            <!--  Error message appears below text, not beside -->
             @error('pipeda_consent') 
                 <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>  
             @enderror
         </div>
 
-            <!-- ✅ Sign Up Button -->
+            <!--  Sign Up Button -->
             <button type="submit" id="signup-btn"
                 class="w-full bg-brandGreen text-white py-3 rounded-lg shadow-md hover:bg-brandGreen-hover transition-transform transform hover:scale-105 duration-300">
                 Sign Up
@@ -163,7 +163,7 @@
             Already a user? <a href="{{ route('login.form') }}" class="btn btn-primary" style="font-weight: bold; text-decoration: underline;">Login</a>
         </div>
     </div>
-    <!-- ✅ Footer (Same as Welcome Page) -->
+    <!--  Footer (Same as Welcome Page) -->
     <footer class="bg-brandGrayDark text-brandGrayLight text-center py-2 w-full mt-auto relative z-10">
         <p>&copy; {{ date('Y') }} MyHealthQR. All Rights Reserved.</p>
     </footer>

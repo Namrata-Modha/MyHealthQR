@@ -5,9 +5,6 @@ import 'jquery-validation';
 window.$ = $;
 window.jQuery = $;
 
-console.log("✅ app.js jQuery loaded:", typeof $ !== 'undefined' ? $.fn.jquery : 'not loaded');
-console.log("✅ jQuery Validate loaded:", typeof $.validator !== 'undefined');
-
 document.addEventListener("DOMContentLoaded", function () {
     const dateOfBirthInput = document.getElementById("date_of_birth");
     const guardianConsentField = document.getElementById("guardianConsentField");
@@ -15,11 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const signupBtn = document.getElementById("signup-btn");
     const signupForm = document.getElementById("signupForm");
 
-    // ✅ Ensure form submission only happens if validation passes
+    // Ensure form submission only happens if validation passes
     if (signupBtn && signupForm) {
         signupForm.addEventListener("submit", function (e) {
             if (typeof $ !== "undefined" && $("#signupForm").length > 0 && !$("#signupForm").valid()) {
-                e.preventDefault(); // ✅ Stop submission if validation fails
+                e.preventDefault(); // Stop submission if validation fails
                 return;
             }
             signupBtn.disabled = true; 
@@ -33,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightIcon = document.getElementById('theme-toggle-light');
     const darkIcon = document.getElementById('theme-toggle-dark');
 
-    // ✅ Ensure elements exist before accessing classList
+    // Ensure elements exist before accessing classList
     if (!themeToggle || !lightIcon || !darkIcon) {
         console.warn("Theme toggle elements not found. Skipping theme script.");
         return; // Exit script if elements are missing
@@ -72,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (loginBtn && loginForm) {
         loginForm.addEventListener("submit", function (e) {
-            // ✅ If using jQuery validation, ensure the form is valid before submitting
+            // If using jQuery validation, ensure the form is valid before submitting
             if (typeof $ !== "undefined" && $("#loginForm").length && !$("#loginForm").valid()) {
                 e.preventDefault();
                 return;
@@ -89,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const navMenu = document.getElementById("mobile-menu");
 
     if (navToggle) {
-        console.log("✅ nav-toggle.js loaded");
+        console.log("nav-toggle.js loaded");
 
         navToggle.addEventListener("click", function () {
             navMenu.classList.toggle("hidden");
