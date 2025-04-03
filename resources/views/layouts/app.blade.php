@@ -20,6 +20,50 @@
     .tooltip {
         z-index: 9999 !important;
     }
+    /* Custom MyHealthQR Tooltip */
+    .tooltip-inner {
+        background-color: #1f2937 !important; /* brandDarkGray */
+        color: #ffffff !important;            /* white text */
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .tooltip.bs-tooltip-top .tooltip-arrow::before {
+        border-top-color: #1f2937 !important;
+    }
+    .tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+        border-bottom-color: #1f2937 !important;
+    }
+    .tooltip.bs-tooltip-left .tooltip-arrow::before {
+        border-left-color: #1f2937 !important;
+    }
+    .tooltip.bs-tooltip-right .tooltip-arrow::before {
+        border-right-color: #1f2937 !important;
+    }
+    .input-with-icon {
+        position: relative;
+    }
+
+    .input-with-icon input,
+    .input-with-icon textarea {
+        padding-right: 3rem; /* space for the icon inside */
+    }
+
+    .input-icon {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        color: #9ca3af; /* light gray */
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .input-icon:hover {
+        color: #ffffff;
+    }
 </style>
 
 <!-- <body class="bg-brandGrayDark text-brandGrayLight min-h-screen flex flex-col justify-between relative z-10">-->

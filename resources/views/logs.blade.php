@@ -55,23 +55,22 @@
     <div class="max-w-6xl mx-auto bg-brandGrayDark bg-opacity-95 shadow-lg rounded-lg border border-brandGreen p-6">
         <div class="text-center mb-6">
             <h2 class="text-2xl font-bold text-brandGreen">📋 Notification Logs</h2>
-            <p class="text-brandGrayLight mt-2">Review access and alert history related to your QR code.</p>
+            <p class="text-brandGrayLight mt-2">Review access and alert history.</p>
         </div>
 
         <div class="overflow-x-auto">
             <table class="w-full text-left table-auto border border-brandBorder rounded-lg overflow-hidden">
                 <thead class="bg-brandBlue text-white">
                     <tr>
-                        <th class="px-4 py-3">#</th>
+                        <th class="px-4 py-3 text-center">#</th>
                         <th class="px-4 py-3">Log Date & Time</th>
-                        <th class="px-4 py-3">QR Code Key</th>
                         <th class="px-4 py-3">Notifications</th>
                     </tr>
                 </thead>
                 <tbody class="text-brandGrayLight divide-y divide-brandBorder bg-brandGrayDark">
                     @if ($logs->isEmpty())
                         <tr>
-                            <td colspan="4" class="text-center px-4 py-6 text-brandGrayLight">No logs found.</td>
+                            <td colspan="3" class="text-center px-4 py-6 text-brandGrayLight">No logs found.</td>
                         </tr>
                     @else
                         @foreach($logs as $log)
@@ -80,7 +79,6 @@
                                     {{ $logs->total() - (($logs->currentPage() - 1) * $logs->perPage()) - $loop->index }}
                                 </td>
                                 <td class="px-4 py-3">{{ \Carbon\Carbon::parse($log->view_timestamp)->format('Y-m-d H:i') }}</td>
-                                <td class="px-4 py-3">{{ optional($log->qrCode)->qr_code ?? 'N/A' }}</td>
                                 <td class="px-4 py-3">
                                     @if($log->notifications->isNotEmpty())
                                         <span class="text-brandGreen font-medium">{{ $log->notifications->first()->notification_type }}</span>

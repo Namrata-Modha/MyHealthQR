@@ -27,7 +27,7 @@
                 <div class="input-group flex">
                     <input type="text" class="form-control h-[46px] px-4 bg-brandGrayDark text-brandGrayLight border border-brandBorder rounded-l-lg w-full focus:ring-2 focus:ring-brandGreen focus:outline-none" name="allergies" value="{{ old('allergies', $medicalInfo->allergies ?? '') }}">
                     <span class="input-group-text h-[46px] px-4 bg-brandGrayDark border border-l-0 border-brandBorder rounded-r-lg flex items-center">
-                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="allergies" onclick="toggleVisibility('allergies')" data-bs-toggle="tooltip" title="Show or hide your allergy details."></i>
+                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="allergies" onclick="toggleVisibility('allergies')" data-bs-toggle="tooltip" title="Show or hide your allergy details. If visible, they will be displayed when your QR code is scanned."></i>
                     </span>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <div class="input-group flex">
                     <input type="text" class="form-control h-[46px] px-4 bg-brandGrayDark text-brandGrayLight border border-brandBorder rounded-l-lg w-full focus:ring-2 focus:ring-brandGreen focus:outline-none" name="conditions" value="{{ old('conditions', $medicalInfo->conditions ?? '') }}">
                     <span class="input-group-text h-[46px] px-4 bg-brandGrayDark border border-l-0 border-brandBorder rounded-r-lg flex items-center">
-                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="conditions" onclick="toggleVisibility('conditions')" data-bs-toggle="tooltip" title="Show or hide your chronic conditions."></i>
+                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="conditions" onclick="toggleVisibility('conditions')" data-bs-toggle="tooltip" title="Show or hide your chronic conditions. If visible, these conditions will be shown to third parties scanning your QR code."></i>
                     </span>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <div class="input-group flex">
                     <input type="text" class="form-control h-[46px] px-4 bg-brandGrayDark text-brandGrayLight border border-brandBorder rounded-l-lg w-full focus:ring-2 focus:ring-brandGreen focus:outline-none" name="medications" value="{{ old('medications', $medicalInfo->medications ?? '') }}">
                     <span class="input-group-text h-[46px] px-4 bg-brandGrayDark border border-l-0 border-brandBorder rounded-r-lg flex items-center">
-                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="medications" onclick="toggleVisibility('medications')" data-bs-toggle="tooltip" title="Show or hide the medications you are taking."></i>
+                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="medications" onclick="toggleVisibility('medications')" data-bs-toggle="tooltip" title="Show or hide the medications you are taking. If visible, emergency responders can see them."></i>
                     </span>
                 </div>
             </div>
@@ -61,19 +61,17 @@
                     <input type="checkbox" class="form-check-input" id="has_insurance" name="has_insurance" {{ old('has_insurance', $hasInsurance) ? 'checked' : '' }}>
                     <label for="has_insurance" class="text-brandGrayLight">I have health insurance</label>
                     <span class="input-group-text h-[46px] px-4 bg-brandGrayDark border border-brandBorder rounded-lg flex items-center">
-                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="has_insurance" onclick="toggleVisibility('has_insurance')" data-bs-toggle="tooltip" title="Show or hide your health insurance status."></i>
+                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="has_insurance" onclick="toggleVisibility('has_insurance')" data-bs-toggle="tooltip" title="Show or hide your health insurance status. If visible, responders will know whether you are insured."></i>
                     </span>
                 </div>
             </div>
 
             <!-- Quick Help Toggle -->
-            <div>
-                <div class="flex items-center gap-3">
-                    <input type="checkbox" class="form-check-input" id="quick_help_enabled" name="quick_help_enabled" {{ old('quick_help_enabled', $healthQrEnabled) ? 'checked' : '' }}>
-                    <label for="quick_help_enabled" class="text-brandGrayLight" data-bs-toggle="tooltip" title="Enable or disable Quick Help.">
-                        Enable Quick Help
-                    </label>
-                </div>
+            <div class="mb-3">
+                <input type="checkbox" class="form-check-input" id="quick_help_enabled" name="quick_help_enabled" {{ old('quick_help_enabled', $healthQrEnabled) ? 'checked' : '' }}>
+                <label class="form-check-label" for="quick_help_enabled" data-bs-toggle="tooltip" data-bs-placement="auto" title="Enable or disable Quick Help. If enabled, third-party users can see your Quick Help instructions.">
+                    Enable Quick Help
+                </label>
             </div>
 
             <!-- Quick Help Questions -->
@@ -84,7 +82,7 @@
                 <div class="input-group flex">
                     <textarea class="form-control px-4 py-2 h-[100px] bg-brandGrayDark text-brandGrayLight border border-brandBorder rounded-l-lg w-full focus:ring-2 focus:ring-brandGreen focus:outline-none" name="quickhelp_answer_1">{{ old('quickhelp_answer_1', $medicalInfo->quickhelp_answer_1 ?? '') }}</textarea>
                     <span class="input-group-text px-4 bg-brandGrayDark border border-l-0 border-brandBorder rounded-r-lg flex items-center">
-                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="quickhelp_answer_1" onclick="toggleVisibility('quickhelp_answer_1')" data-bs-toggle="tooltip" title="Show or hide this emergency instruction."></i>
+                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="quickhelp_answer_1" onclick="toggleVisibility('quickhelp_answer_1')" data-bs-toggle="tooltip" title="Show or hide this emergency instruction. If visible, responders will see it when scanning your QR code."></i>
                     </span>
                 </div>
             </div>
@@ -94,7 +92,7 @@
                 <div class="input-group flex">
                     <textarea class="form-control px-4 py-2 h-[100px] bg-brandGrayDark text-brandGrayLight border border-brandBorder rounded-l-lg w-full focus:ring-2 focus:ring-brandGreen focus:outline-none" name="quickhelp_answer_2">{{ old('quickhelp_answer_2', $medicalInfo->quickhelp_answer_2 ?? '') }}</textarea>
                     <span class="input-group-text px-4 bg-brandGrayDark border border-l-0 border-brandBorder rounded-r-lg flex items-center">
-                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="quickhelp_answer_2" onclick="toggleVisibility('quickhelp_answer_2')" data-bs-toggle="tooltip" title="Show or hide this emergency action."></i>
+                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="quickhelp_answer_2" onclick="toggleVisibility('quickhelp_answer_2')" data-bs-toggle="tooltip" title="Show or hide this emergency action. If visible, responders will know what to do when scanning."></i>
                     </span>
                 </div>
             </div>
@@ -104,7 +102,7 @@
                 <div class="input-group flex">
                     <textarea class="form-control px-4 py-2 h-[100px] bg-brandGrayDark text-brandGrayLight border border-brandBorder rounded-l-lg w-full focus:ring-2 focus:ring-brandGreen focus:outline-none" name="quickhelp_answer_3">{{ old('quickhelp_answer_3', $medicalInfo->quickhelp_answer_3 ?? '') }}</textarea>
                     <span class="input-group-text px-4 bg-brandGrayDark border border-l-0 border-brandBorder rounded-r-lg flex items-center">
-                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="quickhelp_answer_3" onclick="toggleVisibility('quickhelp_answer_3')" data-bs-toggle="tooltip" title="Show or hide this emergency guidance."></i>
+                        <i class="eye-icon fas fa-eye toggle-visibility text-brandGrayLight hover:text-white transition duration-200" data-field="quickhelp_answer_3" onclick="toggleVisibility('quickhelp_answer_3')" data-bs-toggle="tooltip" title="Show or hide this emergency guidance. If visible, responders will know what to do when scanning."></i>
                     </span>
                 </div>
             </div>
