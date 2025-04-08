@@ -177,9 +177,9 @@
         <div class="container mx-auto px-6">
             <p class="text-sm">&copy; {{ date('Y') }} MyHealthQR. All Rights Reserved.</p>
             <div class="flex justify-center space-x-4 mt-2">
-                <a href="{{ route('terms') }}" class="text-brandBlue hover:text-brandBlue-hover text-sm underline">Terms of Service</a>
+                <a href="{{ route('terms') }}" class="text-brandBlue hover:text-brandBlue-hover text-sm underline" target="_blank">Terms of Service</a>
                 <span class="text-brandGrayLight">•</span>
-                <a href="{{ route('privacy') }}" class="text-brandBlue hover:text-brandBlue-hover text-sm underline">Privacy Policy</a>
+                <a href="{{ route('privacy') }}" class="text-brandBlue hover:text-brandBlue-hover text-sm underline" target="_blank">Privacy Policy</a>
             </div>
         </div>
     </footer>

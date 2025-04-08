@@ -125,8 +125,8 @@
                 <input type="checkbox" name="security_agreement_signed" id="security_agreement_signed" class="text-brandGreen"
                 value="1" {{ old('security_agreement_signed') ? 'checked' : '' }}>
                     <span class="text-brandGrayLight text-base">
-                        I agree to the <a href="{{ route('terms') }}" class="text-brandBlue hover:underline" style="font-weight: bold;">Terms of Service</a> 
-                        and <a href="{{ route('privacy') }}" class="text-brandBlue hover:underline" style="font-weight: bold;">Privacy Policy</a>.
+                        I agree to the <a href="{{ route('terms') }}" class="text-brandBlue hover:underline" style="font-weight: bold;" target="_blank">Terms of Service</a> 
+                        and <a href="{{ route('privacy') }}" class="text-brandBlue hover:underline" style="font-weight: bold;" target="_blank">Privacy Policy</a>.
                     </span>
                 </label>
                 <div 
@@ -143,7 +143,7 @@
                 <span class="text-brandGrayLight text-base">
                     I consent to the collection and use of my personal data in compliance with 
                     <a href="https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda_brief/" 
-                    class="text-brandBlue hover:underline font-bold">PIPEDA (Canadian law)</a>.
+                    class="text-brandBlue hover:underline font-bold" target="_blank">PIPEDA (Canadian law)</a>.
                 </span>
             </label>
 

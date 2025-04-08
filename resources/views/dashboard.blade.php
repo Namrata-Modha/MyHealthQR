@@ -18,7 +18,7 @@
     <div class="card shadow-lg p-6 mb-4 bg-brandGrayDark bg-opacity-90 rounded-lg border border-brandGreen">
         <h1 class="text-center text-xl font-bold text-brandGreen" style="margin: 20px;font-size: xx-large;">Your QR Code</h1>
         <div class="text-center">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ urlencode('https://c5b3-205-211-143-59.ngrok-free.app/scan/' . $qrCode->qr_code) }}" alt="Your QR Code" width="250" style="display: inline!important"/>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ urlencode('https://b38d-205-211-143-56.ngrok-free.app/scan/' . $qrCode->qr_code) }}" alt="Your QR Code" width="250" style="display: inline!important"/>
             &nbsp;
         </div>
         <div class="text-center" style="margin: 5px;">
@@ -118,7 +118,7 @@
         
         // Print header and QR code
         printWindow.document.write('<h2>MyHealthQR - QR Code for {{ $thirdPartyView["first_name"] ?? "User" }}</h2>');
-        printWindow.document.write('<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ urlencode("https://c5b3-205-211-143-59.ngrok-free.app/scan/". $qrCode->qr_code) }}" alt="QR Code">');
+        printWindow.document.write('<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ urlencode("https://b38d-205-211-143-56.ngrok-free.app/scan/". $qrCode->qr_code) }}" alt="QR Code">');
         printWindow.document.write('<p>Scan this QR code for medical information.</p>');
 
         printWindow.document.write('</body></html>');
