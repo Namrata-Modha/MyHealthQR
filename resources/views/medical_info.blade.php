@@ -78,7 +78,7 @@
             <h5 class="text-lg font-semibold text-brandGreen mt-4">Quick Help Questionnaire</h5>
 
             <div>
-                <label class="block text-base text-brandGrayLight mb-1">Emergency Steps</label>
+                <label class="block text-base text-brandGrayLight mb-1">What immediate steps should be taken in case of an emergency?</label>
                 <div class="input-group flex">
                     <textarea class="form-control px-4 py-2 h-[100px] bg-brandGrayDark text-brandGrayLight border border-brandBorder rounded-l-lg w-full focus:ring-2 focus:ring-brandGreen focus:outline-none" name="quickhelp_answer_1">{{ old('quickhelp_answer_1', $medicalInfo->quickhelp_answer_1 ?? '') }}</textarea>
                     <span class="input-group-text px-4 bg-brandGrayDark border border-l-0 border-brandBorder rounded-r-lg flex items-center">
@@ -88,7 +88,7 @@
             </div>
 
             <div>
-                <label class="block text-base text-brandGrayLight mb-1">Emergency Medications</label>
+                <label class="block text-base text-brandGrayLight mb-1">What medications or treatments are needed in the emergency situation?</label>
                 <div class="input-group flex">
                     <textarea class="form-control px-4 py-2 h-[100px] bg-brandGrayDark text-brandGrayLight border border-brandBorder rounded-l-lg w-full focus:ring-2 focus:ring-brandGreen focus:outline-none" name="quickhelp_answer_2">{{ old('quickhelp_answer_2', $medicalInfo->quickhelp_answer_2 ?? '') }}</textarea>
                     <span class="input-group-text px-4 bg-brandGrayDark border border-l-0 border-brandBorder rounded-r-lg flex items-center">
@@ -98,7 +98,7 @@
             </div>
 
             <div>
-                <label class="block text-base text-brandGrayLight mb-1">Worsening Condition Instructions</label>
+                <label class="block text-base text-brandGrayLight mb-1">What should be done if the condition worsens?</label>
                 <div class="input-group flex">
                     <textarea class="form-control px-4 py-2 h-[100px] bg-brandGrayDark text-brandGrayLight border border-brandBorder rounded-l-lg w-full focus:ring-2 focus:ring-brandGreen focus:outline-none" name="quickhelp_answer_3">{{ old('quickhelp_answer_3', $medicalInfo->quickhelp_answer_3 ?? '') }}</textarea>
                     <span class="input-group-text px-4 bg-brandGrayDark border border-l-0 border-brandBorder rounded-r-lg flex items-center">
